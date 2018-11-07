@@ -689,4 +689,14 @@
 			and test_mode=#{testMode}
 	</if>
 	</select>
+	<insert id="input" useGeneratedKeys="true" keyProperty="testId" parameterType="org.edataserver.entity.TestInfoVO">
+	 insert into testinfo (user_id, test_name, 
+      test_type, test_skill, test_mode, 
+      test_state, starttime, endtime, 
+      test_content)
+    values (#{userId,jdbcType=VARCHAR}, #{testName,jdbcType=VARCHAR}, 
+      #{testType,jdbcType=VARCHAR}, #{testSkill,jdbcType=VARCHAR}, #{testMode,jdbcType=VARCHAR}, 
+      #{testState,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{testContent,jdbcType=LONGVARCHAR})
+	</insert>
 </mapper>

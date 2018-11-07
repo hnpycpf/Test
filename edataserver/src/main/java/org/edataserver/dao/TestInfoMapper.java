@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.edataserver.entity.Performance;
+import org.edataserver.entity.TestInfoVO;
 import org.edataserver.model.TestInfo;
 @Mapper
 public interface TestInfoMapper {
@@ -24,4 +25,6 @@ public interface TestInfoMapper {
     
     //2018-11-7
     public List<Map<String, Object>> getTestTotal(Performance performance);
+
+	String input(TestInfoVO testStandardVO);
 }
