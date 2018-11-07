@@ -1,19 +1,23 @@
 package org.edataserver.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
-import org.edataserver.model.testStandard;
+import org.edataserver.model.TestStandard;
 @Mapper
 public interface TestStandardMapper {
     int deleteByPrimaryKey(String standardId);
 
-    int insert(testStandard record);
+    int insert(TestStandard record);
 
-    int insertSelective(testStandard record);
+    int insertSelective(TestStandard record);
 
-    testStandard selectByPrimaryKey(String standardId);
+    TestStandard selectByPrimaryKey(String standardId);
 
-    int updateByPrimaryKeySelective(testStandard record);
+    int updateByPrimaryKeySelective(TestStandard record);
 
-    int updateByPrimaryKey(testStandard record);
+    int updateByPrimaryKey(TestStandard record);
+
+	List<TestStandard> getAllStandards();
     
 }

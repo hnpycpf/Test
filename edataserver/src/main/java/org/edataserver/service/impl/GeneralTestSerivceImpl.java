@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.edataserver.dao.StandardInfoMapper;
 import org.edataserver.dao.TestInfoMapper;
+import org.edataserver.dao.TestStandardMapper;
+import org.edataserver.model.StandardInfo;
+import org.edataserver.model.TestStandard;
 import org.edataserver.service.GeneralTestSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,26 +18,15 @@ public class GeneralTestSerivceImpl implements GeneralTestSerivce {
 	 * input
 	 */
 	@Autowired 
-	private TestInfoMapper testInfoMapper;
+	private TestStandardMapper testStandardMapper;
 	@Override
-	public Map<String, Object> input(String testMode,String testName,String testType,String testSkill,String testContent,List<String> standard) {
+	public List<TestStandard> getAllStandards() {
 		//创建返回状态值
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//查询
-		/*List<Map<String,Object>> map=testInfoMapper.input(testMode,testName,testType,testSkill,testContent);
+		List<TestStandard> map=testStandardMapper.getAllStandards();
 		
-		
-		if(map.isEmpty()){
-			resMap.put("errorMsg", "getAllStandards 失败！");
-			resMap.put("result", map);
-			resMap.put("success", "false");
-		}
-		else{
-			resMap.put("errorMsg", "");
-			resMap.put("result", map);
-			resMap.put("success", "true");
-		}		*/
-		return resMap;
+		return map;
 	}
 
 }
