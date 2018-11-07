@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.edataserver.dao.PerformanceDao;
-import org.edataserver.dao.StandardDao;
 import org.edataserver.entity.Performance;
 import org.edataserver.service.PerformanceSerivce;
+
+import org.edataserver.dao.StandardInfoMapper;
+
 import org.edataserver.service.StandardSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ public class PerformanceServiceimpl implements PerformanceSerivce {
 	@Override
 	public Map<String, Object> getTestTotal(Performance performance) {
 		//创建返回状态值
+
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//判断季度是否有值
 		String quarter=performance.getQuarter();
@@ -50,6 +53,9 @@ public class PerformanceServiceimpl implements PerformanceSerivce {
 		//入库
 		
 		List<Map<String,Object>> map=performanceDao.getTestTotal(performance);
+		/*Map<String,Object> resMap=new HashMap<String, Object>();
+		//查询
+		List<Map<String,Object>> map=standardInfoMapper.getAllStandards();
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getTestTotal 失败！");
 			resMap.put("result", map);
@@ -59,9 +65,9 @@ public class PerformanceServiceimpl implements PerformanceSerivce {
 			resMap.put("errorMsg", "");
 			resMap.put("result", map);
 			resMap.put("success", "true");
-		}
+		}*/
 		
-		return resMap;
+		return null;
 	}
 
 }

@@ -25,4 +25,5 @@ public class GeneralTestController {
     	Map<String,Object> resMap=generalTestSerivce.input(testMode,testName,testType,testSkill,testContent,standard);
     	return resMap;
         }
+	
 }
