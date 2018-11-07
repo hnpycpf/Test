@@ -142,9 +142,7 @@
   
   
 	<!-- getAllStandards -->
-    <select id="getAllStandards" resultType="map">
+    <select id="getAllStandards" resultMap="BaseResultMap">
          SELECT standard_number,standard_name,standard_id FROM teststandard 
-   
-       <!--  SELECT standardNumber,standardName,standardId FROM teststandard -->
     </select>
 </mapper>

@@ -2,7 +2,7 @@ package org.edataserver.model;
 
 import java.util.Date;
 
-public class testStandard {
+public class TestStandard {
     private String standardId;
 
     private String userId;
