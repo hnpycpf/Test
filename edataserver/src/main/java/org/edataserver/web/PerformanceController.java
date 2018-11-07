@@ -2,6 +2,8 @@ package org.edataserver.web;
 
 import java.util.Map;
 
+import org.edataserver.entity.Performance;
+import org.edataserver.service.PerformanceSerivce;
 import org.edataserver.service.StandardSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,16 +14,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping(value={"/standard"})
+@RequestMapping(value={"/performance"})
 public class PerformanceController {
 	
 	@Autowired
-	private StandardSerivce modularService;
+	private PerformanceSerivce performanceSerivce;
 	
-	@RequestMapping(value={"/getAllStandards"},method = RequestMethod.GET) 
+	@RequestMapping(value={"/getTestTotal"},method = RequestMethod.GET) 
     @ResponseBody
-    public Map<String,Object> getAllStandards (){
-    	Map<String,Object> resMap=modularService.getAllStandards();
+    public Map<String,Object> getTestTotal (Performance performance){
+    	Map<String,Object> resMap=performanceSerivce.getTestTotal(performance);
     	return resMap;
         }
 }
