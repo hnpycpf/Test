@@ -19,5 +19,8 @@ public interface TestStandardMapper {
     int updateByPrimaryKey(TestStandard record);
 
 	List<TestStandard> getAllStandards();
+
+	//20181107-wh
+	int input(TestStandard testStandard);
     
 }

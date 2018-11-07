@@ -87,11 +87,4 @@
       </if>
     </trim>
   </insert>
-  <!-- 2018.11.7 -->
-  <!-- getAllStandards -->
-    <select id="getAllStandards" resultType="map">
-         SELECT standard_number,standard_name,standard_id FROM teststandard 
-   
-       <!--  SELECT standardNumber,standardName,standardId FROM teststandard -->
-    </select>
 </mapper>
