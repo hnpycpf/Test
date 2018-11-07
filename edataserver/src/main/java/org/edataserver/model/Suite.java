@@ -1,6 +1,7 @@
 package org.edataserver.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Suite {
     private String id;
@@ -18,6 +19,8 @@ public class Suite {
     private Date updatetime;
 
     private String suitGuide;
+    
+    private List<String> suitStandard;
 
     public String getId() {
         return id;
@@ -43,7 +46,15 @@ public class Suite {
         this.testType = testType == null ? null : testType.trim();
     }
 
-    public String getSkillType() {
+    public List<String> getSuitStandard() {
+		return suitStandard;
+	}
+
+	public void setSuitStandard(List<String> suitStandard) {
+		this.suitStandard = suitStandard;
+	}
+
+	public String getSkillType() {
         return skillType;
     }
 

@@ -283,4 +283,43 @@
       updatetime = #{updatetime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
+  <!-- 20181107-wh -->
+  <insert id="input"  useGeneratedKeys="true" keyProperty="standard_id" parameterType="org.edataserver.model.Suite">
+  	insert into suite (
+  		suit_name, 
+  		test_type, 
+      	skill_type, 
+      	suit_util, 
+      	createtime, 
+       	suit_guide)
+    values(
+    	#{suitName},
+    	#{testType},
+    	#{skillType},
+    	#{suitUtil},
+    	#{createtime},
+    	#{suitGuide}
+    )
+  
+  </insert>
+  
+  <insert id="iputSuitStandard" parameterType="org.edataserver.entity.SuitStandard">
+  	insert into standard_suite(
+  		standard_id,
+  		suite_id,
+  		createtime
+  	)
+  	values(
+  		#{standard_id},
+  		#{suite_id},
+  		#{createtime}
+  	)
+  
+  </insert>
+  
+  
+  
+  
+  
 </mapper>

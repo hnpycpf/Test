@@ -1,6 +1,7 @@
 package org.edataserver.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.edataserver.entity.SuitStandard;
 import org.edataserver.model.Suite;
 @Mapper
 public interface SuiteMapper {
@@ -17,4 +18,8 @@ public interface SuiteMapper {
     int updateByPrimaryKeyWithBLOBs(Suite record);
 
     int updateByPrimaryKey(Suite record);
+    //输入标准
+	String input(Suite suite);
+
+	void iputSuitStandard(SuitStandard suitStandard);
 }

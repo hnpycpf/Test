@@ -23,5 +23,8 @@ public interface TestInfoMapper {
     int updateByPrimaryKey(TestInfo record);
     
     //2018-11-7
-    public List<Map<String, Object>> getTestTotal(Performance performance);
+    
+    List<Map<String, Object>> getTestTotal(Performance performance);
+
+	List<Map<String, Object>> getRank(Performance performance);
 }
