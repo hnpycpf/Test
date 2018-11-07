@@ -9,4 +9,6 @@ import org.edataserver.entity.Performance;
 public interface PerformanceSerivce {
 	Map<String, Object> getTestTotal(Performance performance);
 
+	Map<String, Object> getRank(Performance performance);
+
 }

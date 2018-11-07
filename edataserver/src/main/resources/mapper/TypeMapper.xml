@@ -79,4 +79,8 @@
       createtime = #{createtime,jdbcType=TIMESTAMP}
     where type_id = #{typeId,jdbcType=VARCHAR}
   </update>
+  
+  <select id="getStandardTypeList" resultMap="BaseResultMap">
+  	select type_id,type_name from type
+  </select>
 </mapper>

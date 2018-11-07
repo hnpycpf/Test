@@ -141,8 +141,27 @@
   </update>
   
   
-	<!-- getAllStandards -->
+	<!-- 20181107 -->
     <select id="getAllStandards" resultMap="BaseResultMap">
          SELECT standard_number,standard_name,standard_id FROM teststandard 
     </select>
+    
+    <insert id="input" parameterType="org.edataserver.model.testStandard" >
+    insert into teststandard (
+    	standard_name, 
+      	standard_number, 
+      	project_name, 
+      	type_id, 
+      	standard_file, 
+      	createtime
+      )
+    values (
+    	#{standardName},
+    	#{standardNumber},
+    	#{projectName},
+    	#{typeId},
+    	#{standardFile},
+    	#{createtime}
+      )
+  </insert>
 </mapper>
