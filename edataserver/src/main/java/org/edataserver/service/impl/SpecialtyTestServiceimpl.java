@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.edataserver.dao.StandardDao;
+import org.edataserver.dao.StandardInfoMapper;
 import org.edataserver.service.SpecialtyTestSerivce;
 import org.edataserver.service.StandardSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class SpecialtyTestServiceimpl implements SpecialtyTestSerivce {
 	@Autowired
-	private StandardDao modularDao;
+	private StandardInfoMapper standardInfoMapper;
 	
 	@Override
 	public Map<String, Object> getAllStandards() {
 		//创建返回状态值
-		Map<String,Object> resMap=new HashMap<String, Object>();
+		/*Map<String,Object> resMap=new HashMap<String, Object>();
 		//查询
 		List<Map<String,Object>> map=modularDao.getAllStandards();
 		if(map.isEmpty()){
@@ -30,8 +30,8 @@ public class SpecialtyTestServiceimpl implements SpecialtyTestSerivce {
 			resMap.put("result", map);
 			resMap.put("success", "true");
 		}
-		
-		return resMap;
+		*/
+		return null;
 	}
 
 }
