@@ -5,18 +5,18 @@ import java.util.List;
 import java.util.Map;
 
 import org.edataserver.dao.PerformanceDao;
+import org.edataserver.dao.TestInfoMapper;
 import org.edataserver.entity.Performance;
+import org.edataserver.model.TestInfo;
 import org.edataserver.service.PerformanceSerivce;
-
 import org.edataserver.dao.StandardInfoMapper;
-
 import org.edataserver.service.StandardSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
 public class PerformanceServiceimpl implements PerformanceSerivce {
 	@Autowired
-	private PerformanceDao performanceDao;
+	private TestInfoMapper testInfoMapper;
 	@Override
 	public Map<String, Object> getTestTotal(Performance performance) {
 		//创建返回状态值
@@ -52,10 +52,7 @@ public class PerformanceServiceimpl implements PerformanceSerivce {
 		}
 		//入库
 		
-		List<Map<String,Object>> map=performanceDao.getTestTotal(performance);
-		/*Map<String,Object> resMap=new HashMap<String, Object>();
-		//查询
-		List<Map<String,Object>> map=standardInfoMapper.getAllStandards();
+		List<Map<String,Object>> map=testInfoMapper.getTestTotal(performance);
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getTestTotal 失败！");
 			resMap.put("result", map);
@@ -65,9 +62,9 @@ public class PerformanceServiceimpl implements PerformanceSerivce {
 			resMap.put("errorMsg", "");
 			resMap.put("result", map);
 			resMap.put("success", "true");
-		}*/
-		
-		return null;
+		}
+		//返回
+		return resMap;
 	}
 
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.edataserver.dao.TypeMapper" >
+  <resultMap id="BaseResultMap" type="org.edataserver.model.Type" >
+    <id column="type_id" property="typeId" jdbcType="VARCHAR" />
+    <result column="standard_id" property="standardId" jdbcType="VARCHAR" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    type_id, standard_id, type_name, createtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from type
+    where type_id = #{typeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from type
+    where type_id = #{typeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.edataserver.model.Type" >
+    insert into type (type_id, standard_id, type_name, 
+      createtime)
+    values (#{typeId,jdbcType=VARCHAR}, #{standardId,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.edataserver.model.Type" >
+    insert into type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="standardId != null" >
+        standard_id,
+      </if>
+      <if test="typeName != null" >
+        type_name,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeId != null" >
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="standardId != null" >
+        #{standardId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.edataserver.model.Type" >
+    update type
+    <set >
+      <if test="standardId != null" >
+        standard_id = #{standardId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.edataserver.model.Type" >
+    update type
+    set standard_id = #{standardId,jdbcType=VARCHAR},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where type_id = #{typeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

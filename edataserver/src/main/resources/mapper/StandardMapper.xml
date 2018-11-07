@@ -3,12 +3,7 @@
 
 <mapper namespace="org.edataserver.dao.StandardDao">
 
-	<!-- getAllStandards -->
-    <select id="getAllStandards" resultType="map">
-         SELECT standard_number,standard_name,standard_id FROM teststandard 
-   
-       <!--  SELECT standardNumber,standardName,standardId FROM teststandard -->
-    </select>
+	
 
 
 </mapper>
