@@ -19,7 +19,7 @@ public interface SuiteMapper {
 
     int updateByPrimaryKey(Suite record);
     //输入标准
-	String input(Suite suite);
+	void  input(Suite suite);
 
 	void iputSuitStandard(SuitStandard suitStandard);
 }

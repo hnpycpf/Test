@@ -144,7 +144,7 @@
   </update>
   
   <!-- 20181107-wh -->
-  <insert id="input"  useGeneratedKeys="true" keyProperty="standard_id" parameterType="org.edataserver.model.Suite">
+  <insert id="input"  useGeneratedKeys="true" keyProperty="id" parameterType="org.edataserver.model.Suite">
   	insert into suite (
   		suit_name, 
   		test_type, 
