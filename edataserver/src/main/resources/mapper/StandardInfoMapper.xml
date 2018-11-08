@@ -87,4 +87,14 @@
       </if>
     </trim>
   </insert>
+    
+    <insert id="input" parameterType="org.edataserver.entity.TestInfoVO">   
+    insert into standard_info(test_id, type_id,createtime,updatetime) 
+    values
+    <foreach collection="standard" item="item" separator=",">
+    	<trim prefix="(" suffix=")">
+    	#{testId},#{item},now(),now()
+    	</trim>
+    </foreach>
+    </insert>
 </mapper>
