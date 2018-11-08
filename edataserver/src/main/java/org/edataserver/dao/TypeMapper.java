@@ -22,5 +22,5 @@ public interface TypeMapper {
 
 	List<Map<String, Object>> getStandardTypeList();
 
-	List<Map<String, Object>> getStandardList(GetStandardList getStandardList);
+	
 }

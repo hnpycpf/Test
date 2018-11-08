@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.edataserver.entity.GetStandardList;
 import org.edataserver.model.TestStandard;
 @Mapper
 public interface TestStandardMapper {
@@ -28,5 +29,13 @@ public interface TestStandardMapper {
 
 	List<Map<String, Object>> getTestList(@Param("userId")String userId, @Param("testType")String testType, @Param("startDate")Date startDate, @Param("endDate")Date endDate, @Param("keyWord")String keyWord,
 			@Param("testMode")String testMode);
+
+	List<Map<String, Object>> getStandardList(GetStandardList getStandardList);
+	//20181108-wh
+	List<Map<String, Object>> getStandardById(@Param("standardId")String standardId);
+
+	//int update(TestStandard testStandard);
+
+	//int delete(String standardId);
     
 }

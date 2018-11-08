@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.edataserver.entity.GetList;
 import org.edataserver.entity.TestInfoVO;
 import org.edataserver.model.StandardInfo;
 import org.edataserver.model.TestStandard;
@@ -26,25 +27,7 @@ public class GeneralTestController {
 	
 	@Autowired
 	private GeneralTestSerivce generalTestSerivce;
-	
-	/**
-	 * input
-	 */
-	@GetMapping(value={"/getAllStandards"}) 
-    public JSONObject getAllStandards (){
-    	JSONObject jb=new JSONObject();
-		try {
-			List<TestStandard> resMap=generalTestSerivce.getAllStandards();
-			jb.put("reusltData", resMap);
-			jb.put("success", true);
-			jb.put("errorMsg", null);
-		} catch (Exception e) {
-			jb.put("success", false);
-			jb.put("errorMsg",null);
-			e.printStackTrace();
-		}
-    	return jb;
-        }
+	//cpf
 	@PostMapping(value="/input")
 	public JSONObject input(@RequestParam TestInfoVO testInfoVO) {
 		JSONObject jb=new JSONObject();;
@@ -75,5 +58,17 @@ public class GeneralTestController {
 				return null;
 		
 	}
-	
+	//wh
+	@GetMapping(value={"/getResult"}) 
+    @ResponseBody
+    public Map<String,Object> getResult (String testId){
+    	Map<String,Object> resMap=generalTestSerivce.getResult(testId);
+    	return resMap;
+    }
+	@GetMapping(value={"/getDetail"}) 
+    @ResponseBody
+    public Map<String,Object> getDetail (String testId){
+    	Map<String,Object> resMap=generalTestSerivce.getDetail(testId);
+    	return resMap;
+    }
 }

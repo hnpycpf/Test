@@ -2,6 +2,8 @@ package org.edataserver.web;
 
 import java.util.Map;
 
+import org.edataserver.entity.GetList;
+import org.edataserver.service.SpecialtyTestSerivce;
 import org.edataserver.service.StandardSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,16 +15,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping(value={"/standard"})
+@RequestMapping(value={"/specialtyTest"})
 public class SpecialtyTestController {
 	
 	@Autowired
-	private StandardSerivce modularService;
+	private SpecialtyTestSerivce specialtyTestSerivce;
 	
-	@GetMapping(value={"/getAllStandards"}) 
+	@GetMapping(value={"/getList"}) 
     @ResponseBody
-    public Map<String,Object> getAllStandards (){
-    	Map<String,Object> resMap=modularService.getAllStandards();
+    public Map<String,Object> getList (GetList getList){
+    	Map<String,Object> resMap=specialtyTestSerivce.getList(getList);
     	return resMap;
-        }
+    }
+	@GetMapping(value={"/getDetail"}) 
+    @ResponseBody
+    public Map<String,Object> getDetail (String testId){
+    	Map<String,Object> resMap=specialtyTestSerivce.getDetail(testId);
+    	return resMap;
+    }
 }

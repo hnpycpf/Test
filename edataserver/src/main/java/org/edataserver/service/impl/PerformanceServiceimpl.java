@@ -101,7 +101,7 @@ public class PerformanceServiceimpl implements PerformanceSerivce {
 		
 		List<Map<String,Object>> map=testInfoMapper.getRank(performance);
 		if(map.isEmpty()){
-			resMap.put("errorMsg", "getTestTotal 失败！");
+			resMap.put("errorMsg", "getRank 失败！");
 			resMap.put("result", map);
 			resMap.put("success", "false");
 		}

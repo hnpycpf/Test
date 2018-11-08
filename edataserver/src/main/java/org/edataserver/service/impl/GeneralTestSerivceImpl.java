@@ -19,7 +19,8 @@ import com.alibaba.fastjson.JSONObject;
 @Service
 public class GeneralTestSerivceImpl implements GeneralTestSerivce {
 	/**
-	 * input
+	 * cpf
+	 * 
 	 */
 	@Autowired 
 	private TestStandardMapper testStandardMapper;
@@ -29,15 +30,7 @@ public class GeneralTestSerivceImpl implements GeneralTestSerivce {
 	
 	@Autowired
 	private StandardInfoMapper standardInfoMapper;
-	@Override
-	public List<TestStandard> getAllStandards() {
-		//创建返回状态值
-		Map<String,Object> resMap=new HashMap<String, Object>();
-		//查询
-		List<TestStandard> map=testStandardMapper.getAllStandards();
-		
-		return map;
-	}
+	
 	@Override
 	public void input(TestInfoVO testStandardVO) {
 		
@@ -51,6 +44,45 @@ public class GeneralTestSerivceImpl implements GeneralTestSerivce {
 		
 		List<Map<String, Object>> list=testStandardMapper.getTestList(userId,testType,startDate,endDate,keyWord,testMode);
 		return list;
+	}
+	
+	//wh
+	@Override
+	public Map<String, Object> getResult(String testId) {
+		//创建返回状态值
+		Map<String,Object> resMap=new HashMap<String, Object>();
+		//查询
+		List<Map<String,Object>> map=testInfoMapper.getResult(testId);
+		if(map.isEmpty()){
+			resMap.put("errorMsg", "getResult 失败！");
+			resMap.put("result", map);
+			resMap.put("success", "false");
+		}
+		else{
+			resMap.put("errorMsg", "");
+			resMap.put("result", map);
+			resMap.put("success", "true");
+		}
+		return resMap;
+	}
+	
+	@Override
+	public Map<String, Object> getDetail(String testId) {
+		//创建返回状态值
+		Map<String,Object> resMap=new HashMap<String, Object>();
+		//查询
+		List<Map<String,Object>> map=testInfoMapper.GeneralTestgetDetail(testId);
+		if(map.isEmpty()){
+			resMap.put("errorMsg", "getDetail 失败！");
+			resMap.put("result", map);
+			resMap.put("success", "false");
+		}
+		else{
+			resMap.put("errorMsg", "");
+			resMap.put("result", map);
+			resMap.put("success", "true");
+		}
+		return resMap;
 	}
 
 }

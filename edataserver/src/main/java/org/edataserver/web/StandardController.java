@@ -45,4 +45,25 @@ public class StandardController {
     	Map<String,Object> resMap=standardService.getStandardList(getStandardList);
     	return resMap;
     }
+	
+	//20181108-wh
+	@GetMapping(value={"/getStandardById"})
+    @ResponseBody
+    public Map<String,Object> getStandardById (String standardId){
+    	Map<String,Object> resMap=standardService.getStandardById(standardId);
+    	return resMap;
+    }
+	
+	@GetMapping(value={"/update"})
+    @ResponseBody
+    public Map<String,Object> update (TestStandard testStandard){
+    	Map<String,Object> resMap=standardService.update(testStandard);
+    	return resMap;
+    }
+	@GetMapping(value={"/delete"})
+    @ResponseBody
+    public Map<String,Object> delete (String standardId){
+    	Map<String,Object> resMap=standardService.delete(standardId);
+    	return resMap;
+    }
 }
