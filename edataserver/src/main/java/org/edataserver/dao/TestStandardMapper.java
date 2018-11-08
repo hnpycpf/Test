@@ -34,8 +34,6 @@ public interface TestStandardMapper {
 	//20181108-wh
 	List<Map<String, Object>> getStandardById(@Param("standardId")String standardId);
 
-	//int update(TestStandard testStandard);
 
-	//int delete(String standardId);
     
 }

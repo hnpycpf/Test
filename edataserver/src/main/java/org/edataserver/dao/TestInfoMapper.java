@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.edataserver.entity.GetList;
 import org.edataserver.entity.Performance;
 import org.edataserver.entity.TestInfoVO;
@@ -34,9 +35,9 @@ public interface TestInfoMapper {
 
 	List<Map<String, Object>> getList(GetList getList);
 
-	List<Map<String, Object>> getDetail(String testId);
+	List<Map<String, Object>> getDetail(@Param("testId")String testId);
 	//wh
-	List<Map<String, Object>> getResult(String testId);
+	List<Map<String, Object>> getResult(@Param("testId")String testId);
 
-	List<Map<String, Object>> GeneralTestgetDetail(String testId);
+	List<Map<String, Object>> GeneralTestgetDetail(@Param("testId")String testId);
 }

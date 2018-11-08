@@ -168,7 +168,7 @@
   <!-- 20181108 -->
   <select id="getStandardList" parameterType="org.edataserver.entity.GetStandardList" resultMap="BaseResultMap">
   	select a.standard_id,a.standard_name,a.standard_number,b.type_name,a.project_name from teststandard a left join type b
-  	where 1=1 a.standard_id=b.standard_id
+  	on  a.standard_id=b.standard_id
   	<if test="standardTypeId !=null and standardTypeId !=''">   
 		and a.type_id=#{standardTypeId} 
 	</if>
@@ -176,10 +176,10 @@
 		and a.standard_status=#{status} 
 	</if>
 	<if test="impleStartDate !=null and impleStartDate !=''">   
-		and a.createtime > #{impleStartDate}
+		and a.createtime &gt; #{impleStartDate}
 	</if>
 	<if test="impleEndDate !=null and impleEndDate !=''">   
-		and a.createtime < #{impleEndDate}
+		and a.createtime &lt; #{impleEndDate}
 	</if>
 	<if test="keyWord !=null and keyWord !=''">   
 		and a.standard_name like '%${keyWord}%'

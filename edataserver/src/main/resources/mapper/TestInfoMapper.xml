@@ -683,7 +683,7 @@
 			and starttime like '%${year}-${month}%'
 	</if>
 	<if test="startDate !=null and startDate !='' and endDate !=null and endDate !=''">   
-			and starttime > #{startDate} and starttime < #{endDate}
+			and starttime &gt; #{startDate} and starttime &lt; #{endDate}
 	</if>
 	<if test="year !=null and year !='' and startDate ==null and startDate =='' and endDate ==null and endDate =='' and month ==null and month ==''">   
 			and starttime like '%${year}%'
@@ -710,7 +710,7 @@
 			and starttime like '%${year}-${month}%'
 		</if>
 		<if test="startDate !=null and startDate !='' and endDate !=null and endDate !=''">   
-			and starttime > #{startDate} and starttime < #{endDate}
+			and starttime &gt; #{startDate} and starttime &lt; #{endDate}
 		</if>
 		<if test="year !=null and year !='' and startDate ==null and startDate =='' and endDate ==null and endDate =='' and month ==null and month ==''">   
 			and starttime like '%${year}%'
@@ -721,21 +721,66 @@
 	</select >
 	
 	<!-- 20181108-wh -->
-	
+	<!-- specialtyTest -->
 	<select id="getList" parameterType="org.edataserver.entity.GetList" resultMap="BaseResultMap">
-		select test_id,test_name,test_type
+		select test_id as testId,test_name as testName,test_type as testType,applicant,starttime,test_state as testState,count(*) as total
+		from testinfo
+		where 1=1
+		<if test="testType !=null and testType !=''">   
+			and test_type=#{testType}
+		</if>
+		<if test="testState !=null and testState !=''">   
+			and test_state=#{testState}
+		</if>
+		<if test="appStartDate !=null and appStartDate !=''">   
+			and starttime &gt; #{appStartDate}
+		</if>
+		<if test="appEndDate !=null and appEndDate !=''">   
+			and starttime &lt; #{appEndDate}
+		</if>
+		<if test="successStartDate !=null and successStartDate !=''">   
+			and endtime &gt; #{testMode}
+		</if>
+		<if test="successEndDate !=null and successEndDate !=''">   
+			and endtime &lt; #{testMode}
+		</if>
+		<if test="keyWord !=null and keyWord !=''">   
+			and test_name like '%${keyWord}%'
+		</if>
 	</select>
 	
 	<select id="getDetail" parameterType="org.edataserver.entity.GetList" resultMap="BaseResultMap">
 		select 
+			a.test_name as testName,
+			a.test_type as testType,
+			a.test_skill as testSkill,
+			a.starttime,
+			a.applicant,
+			a.test_content as testContent,
+			b.standard_id as standardId,
+			b.standard_name as standardName,
+			b.standard_number as standardNumber,
+			b.standard_source as standardSource
+		from testinfo a left join teststandard b
+		on a.user_id=b.user_id and a.test_id=#{testId}
 	</select>
 	
 	<!-- GeneralTest -->
-	<select id="getResult" resultMap="map">
-	
-	</select>
+	 <select id="getResult" resultMap="map">
+		select * from testresult  where test_id=#{testId}
+	</select> 
 	<select id="GeneralTestgetDetail" resultMap="map">
-	
+		select 
+			a.test_name as testName,
+			a.test_type as testType,
+			a.test_skill as testSkill,
+			a.test_content as testContent,
+			b.standard_id as standardId,
+			b.standard_number as standardNumber,
+			b.standard_name as standsrdName
+		from testinfo a left join teststandard b 
+		on a.user_id=b.user_id and a.test_id=#{testId}
+		
 	</select>
 
 </mapper>
