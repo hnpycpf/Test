@@ -1,7 +1,8 @@
 package org.edataserver.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.edataserver.model.User;
-
+@Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(String userId);
 

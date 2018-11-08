@@ -17,17 +17,17 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping(value={"/specialtyTest"})
 public class SpecialtyTestController {
-	
+
 	@Autowired
 	private SpecialtyTestSerivce specialtyTestSerivce;
-	
-	@GetMapping(value={"/getList"}) 
+
+	@GetMapping(value={"/getAllStandards"})
     @ResponseBody
     public Map<String,Object> getList (GetList getList){
     	Map<String,Object> resMap=specialtyTestSerivce.getList(getList);
     	return resMap;
     }
-	@GetMapping(value={"/getDetail"}) 
+	@GetMapping(value={"/getDetail"})
     @ResponseBody
     public Map<String,Object> getDetail (String testId){
     	Map<String,Object> resMap=specialtyTestSerivce.getDetail(testId);

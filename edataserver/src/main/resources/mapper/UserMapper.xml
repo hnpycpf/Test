@@ -31,7 +31,7 @@
       #{userType,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="org.edataserver.model.User" >
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="userId" parameterType="org.edataserver.model.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >

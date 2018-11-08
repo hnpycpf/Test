@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.edataserver.dao.PerformanceDao">
+
+	<!-- "getTestTotal" -->
+    <select id="getTestTotal" parameterType="org.edataserver.entity.Performance" resultType="map">
+        select count(*) from testinfo where 1=1
+   	<if test="month !=null and month !=''">   
+			and starttime like '%${year}-${month}%'
+	</if>
+	<if test="startDate !=null and startDate !='' and endDate !=null and endDate !=''">   
+			and starttime &gt; #{startDate} and starttime &lt; #{endDate}
+	</if>
+	<if test="year !=null and year !='' and startDate ==null and startDate =='' and endDate ==null and endDate =='' and month ==null and month ==''">   
+			and starttime like '%${year}%'
+	</if>
+	<if test="testMode !=null and testMode !=''">   
+			and test_mode=#{testMode}
+	</if>
+	</select>
+
+</mapper>

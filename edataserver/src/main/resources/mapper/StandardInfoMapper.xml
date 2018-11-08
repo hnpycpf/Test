@@ -44,49 +44,6 @@
       </if>
     </trim>
   </insert>
-  <resultMap id="BaseResultMap" type="org.edataserver.model.StandardInfo">
-    <result column="test_id" jdbcType="VARCHAR" property="testId" />
-    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
-    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
-  </resultMap>
-  <insert id="insert" parameterType="org.edataserver.model.StandardInfo">
-    insert into standard_info (test_id, type_id, createtime, 
-      updatetime)
-    values (#{testId,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{updatetime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="org.edataserver.model.StandardInfo">
-    insert into standard_info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="testId != null">
-        test_id,
-      </if>
-      <if test="typeId != null">
-        type_id,
-      </if>
-      <if test="createtime != null">
-        createtime,
-      </if>
-      <if test="updatetime != null">
-        updatetime,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="testId != null">
-        #{testId,jdbcType=VARCHAR},
-      </if>
-      <if test="typeId != null">
-        #{typeId,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
     
     <insert id="input" parameterType="org.edataserver.entity.TestInfoVO">   
     insert into standard_info(test_id, type_id,createtime,updatetime) 

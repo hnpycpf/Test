@@ -7,7 +7,6 @@ import org.edataserver.entity.GetStandardList;
 import org.edataserver.model.TestStandard;
 
 public interface StandardSerivce {
-    Map<String, Object> getAllStandards();
 
 	Map<String, Object> input(TestStandard testStandard);
 
@@ -20,6 +19,8 @@ public interface StandardSerivce {
 	Map<String, Object> update(TestStandard testStandard);
 
 	Map<String, Object> delete(String standardId);
+
+	Map<String, Object> getAllStandards();
 
 	
 }
