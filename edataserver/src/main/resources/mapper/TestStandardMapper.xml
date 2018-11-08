@@ -141,7 +141,7 @@
   </update>
   
   
-	<!-- 20181107 -->
+	<!-- 20181107-wh -->
     <select id="getAllStandards" resultMap="BaseResultMap">
          SELECT standard_number,standard_name,standard_id FROM teststandard 
     </select>
@@ -164,4 +164,35 @@
     	#{createtime}
       )
   </insert>
+  
+  <!-- 20181108 -->
+  <select id="getStandardList" parameterType="org.edataserver.entity.GetStandardList" resultMap="BaseResultMap">
+  	select a.standard_id,a.standard_name,a.standard_number,b.type_name,a.project_name from teststandard a left join type b
+  	where 1=1 a.standard_id=b.standard_id
+  	<if test="standardTypeId !=null and standardTypeId !=''">   
+		and a.type_id=#{standardTypeId} 
+	</if>
+	<if test="status !=null and status !=''">   
+		and a.standard_status=#{status} 
+	</if>
+	<if test="impleStartDate !=null and impleStartDate !=''">   
+		and a.createtime > #{impleStartDate}
+	</if>
+	<if test="impleEndDate !=null and impleEndDate !=''">   
+		and a.createtime < #{impleEndDate}
+	</if>
+	<if test="keyWord !=null and keyWord !=''">   
+		and a.standard_name like '%${keyWord}%'
+	</if>
+  </select>
+  
+  <select id="getStandardById"  resultMap="BaseResultMap">
+  	select standard_id,standard_name,standard_number,type_id,project_name from teststandard 
+  	where standard_id=#{standardId}
+  </select>
+  	
+<!--   <update id="update">
+  	update teststandard set 
+  </update>
+   -->
 </mapper>

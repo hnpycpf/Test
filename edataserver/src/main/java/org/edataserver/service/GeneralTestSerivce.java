@@ -15,10 +15,13 @@ public interface GeneralTestSerivce {
 	/**
 	 * input
 	 */
-	List<TestStandard> getAllStandards();
 
 	void input(TestInfoVO testStandardVO);
 
 	List<Map<String, Object>> getTestList(String userId, Integer currentPage, Integer rows, String testType,
 			Date startDate, Date endDate, String keyWord, String testMode);
+
+	Map<String, Object> getResult(String testId);
+
+	Map<String, Object> getDetail(String testId);
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.edataserver.entity.GetStandardList;
 import org.edataserver.model.Type;
 @Mapper
 public interface TypeMapper {
@@ -21,4 +22,6 @@ public interface TypeMapper {
     int updateByPrimaryKey(Type record);
 
 	List<Map<String, Object>> getStandardTypeList();
+
+	
 }

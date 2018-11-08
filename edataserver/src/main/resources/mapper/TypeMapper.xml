@@ -79,7 +79,7 @@
       type_code = #{typeCode,jdbcType=VARCHAR}
     where type_id = #{typeId,jdbcType=VARCHAR}
   </update>
-  
+  <!-- 20181107-wh -->
   <select id="getStandardTypeList" resultMap="BaseResultMap">
   	select type_id,type_name from type
   </select>
