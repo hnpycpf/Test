@@ -1,6 +1,7 @@
 package org.edataserver.service;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,5 +17,8 @@ public interface GeneralTestSerivce {
 	 */
 	List<TestStandard> getAllStandards();
 
-	JSONObject input(TestInfoVO testStandardVO);
+	void input(TestInfoVO testStandardVO);
+
+	List<Map<String, Object>> getTestList(String userId, Integer currentPage, Integer rows, String testType,
+			Date startDate, Date endDate, String keyWord, String testMode);
 }

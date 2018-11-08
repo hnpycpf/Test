@@ -1,5 +1,6 @@
 package org.edataserver.web;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -46,8 +47,32 @@ public class GeneralTestController {
         }
 	@PostMapping(value="/input")
 	public JSONObject input(@RequestParam TestInfoVO testInfoVO) {
-		JSONObject jb=generalTestSerivce.input(testInfoVO);
+		JSONObject jb=new JSONObject();;
+		try {
+			generalTestSerivce.input(testInfoVO);
+			jb.put("reusltData", jb);
+			jb.put("success", true);
+			jb.put("errorMsg", null);
+		} catch (Exception e) {
+			jb.put("success", false);
+			jb.put("errorMsg", null);
+			e.printStackTrace();
+		}
 		return jb;
+		
+	}
+	@GetMapping(value="/getTestList")
+	public JSONObject getTestList(@RequestParam String userId,
+			@RequestParam Integer currentPage,
+			@RequestParam Integer rows,
+			@RequestParam String testType,
+			@RequestParam Date startDate,
+			@RequestParam Date endDate,
+			@RequestParam String keyWord,
+			@RequestParam String testMode
+			) {
+		List<Map<String,Object>> list=generalTestSerivce.getTestList(userId,currentPage,rows,testType,startDate,endDate,keyWord,testMode);
+				return null;
 		
 	}
 	

@@ -1,5 +1,6 @@
 package org.edataserver.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,12 +39,18 @@ public class GeneralTestSerivceImpl implements GeneralTestSerivce {
 		return map;
 	}
 	@Override
-	public JSONObject input(TestInfoVO testStandardVO) {
+	public void input(TestInfoVO testStandardVO) {
 		
 		testInfoMapper.input(testStandardVO);
 		
 		standardInfoMapper.input(testStandardVO);
-		return null;
+	}
+	@Override
+	public List<Map<String, Object>> getTestList(String userId, Integer currentPage, Integer rows, String testType,
+			Date startDate, Date endDate, String keyWord, String testMode) {
+		
+		List<Map<String, Object>> list=testStandardMapper.getTestList(userId,testType,startDate,endDate,keyWord,testMode);
+		return list;
 	}
 
 }
