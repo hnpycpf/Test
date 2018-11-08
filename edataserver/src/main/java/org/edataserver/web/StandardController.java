@@ -2,6 +2,7 @@ package org.edataserver.web;
 
 import java.util.Map;
 
+import org.edataserver.entity.GetStandardList;
 import org.edataserver.model.TestStandard;
 import org.edataserver.service.StandardSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,11 @@ public class StandardController {
     	Map<String,Object> resMap=standardService.getStandardTypeList();
     	return resMap;
         }
+	
+	@GetMapping(value={"/getStandardList"})
+    @ResponseBody
+    public Map<String,Object> getStandardList (GetStandardList getStandardList){
+    	Map<String,Object> resMap=standardService.getStandardList(getStandardList);
+    	return resMap;
+    }
 }

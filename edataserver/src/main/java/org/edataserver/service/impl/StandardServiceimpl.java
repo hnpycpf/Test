@@ -8,6 +8,7 @@ import java.util.Map;
 import org.edataserver.dao.StandardInfoMapper;
 import org.edataserver.dao.TestStandardMapper;
 import org.edataserver.dao.TypeMapper;
+import org.edataserver.entity.GetStandardList;
 import org.edataserver.model.TestStandard;
 import org.edataserver.service.StandardSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,16 @@ public class StandardServiceimpl implements StandardSerivce {
 			resMap.put("success", "true");
 		}
 		return resMap;
+	}
+
+	@Override
+	public Map<String, Object> getStandardList(GetStandardList getStandardList) {
+		//创建返回状态值
+		Map<String,Object> resMap=new HashMap<String, Object>();
+		//查询
+		List<Map<String,Object>> map=typeMapper.getStandardList(getStandardList);
+		
+		return null;
 	}
 
 }
