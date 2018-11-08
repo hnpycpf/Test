@@ -54,4 +54,8 @@
     	</trim>
     </foreach>
     </insert>
+    
+    <select id="getAllStandards">
+    	select 
+    </select>
 </mapper>

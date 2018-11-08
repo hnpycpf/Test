@@ -21,7 +21,7 @@ public class SpecialtyTestController {
 	@Autowired
 	private SpecialtyTestSerivce specialtyTestSerivce;
 
-	@GetMapping(value={"/getAllStandards"})
+	@GetMapping(value={"/getList"})
     @ResponseBody
     public Map<String,Object> getList (GetList getList){
     	Map<String,Object> resMap=specialtyTestSerivce.getList(getList);

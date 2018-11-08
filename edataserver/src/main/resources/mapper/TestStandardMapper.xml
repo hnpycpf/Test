@@ -142,7 +142,7 @@
   
   
 	<!-- 20181107-wh -->
-    <select id="getAllStandards" resultMap="BaseResultMap">
+    <select id="getAllStandards" resultType="map">
          SELECT standard_number,standard_name,standard_id FROM teststandard 
     </select>
     

@@ -29,7 +29,7 @@ public class StandardServiceimpl implements StandardSerivce {
 		//创建返回状态值
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//查询
-		List<Map<String,Object>> map=standardInfoMapper.getAllStandards();
+		List<Map<String,Object>> map=testStandardMapper.getAllStandards();
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getAllStandards 失败！");
 			resMap.put("result", map);

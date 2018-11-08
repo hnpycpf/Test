@@ -12,9 +12,6 @@
     <result column="starttime" jdbcType="TIMESTAMP" property="starttime" />
     <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.edataserver.model.TestInfo">
-    <result column="test_content" jdbcType="LONGVARCHAR" property="testContent" />
-  </resultMap>
   <sql id="Base_Column_List">
     test_id, user_id, test_name, test_type, test_skill, test_mode, test_state, starttime, 
     endtime
@@ -22,14 +19,7 @@
   <sql id="Blob_Column_List">
     test_content
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from testinfo
-    where test_id = #{testId,jdbcType=VARCHAR}
-  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from testinfo
     where test_id = #{testId,jdbcType=VARCHAR}
@@ -203,7 +193,7 @@
 	
 	<!-- 20181108-wh -->
 	<!-- specialtyTest -->
-	<select id="getList" parameterType="org.edataserver.entity.GetList" resultMap="BaseResultMap">
+	<select id="getList" parameterType="org.edataserver.entity.GetList" resultType="map">
 		select test_id as testId,test_name as testName,test_type as testType,applicant,starttime,test_state as testState,count(*) as total
 		from testinfo
 		where 1=1
@@ -230,7 +220,7 @@
 		</if>
 	</select>
 	
-	<select id="getDetail" parameterType="org.edataserver.entity.GetList" resultMap="BaseResultMap">
+	<select id="getDetail" parameterType="org.edataserver.entity.GetList" resultType="map">
 		select 
 			a.test_name as testName,
 			a.test_type as testType,
@@ -247,10 +237,10 @@
 	</select>
 	
 	<!-- GeneralTest -->
-	 <select id="getResult" resultMap="map">
+	 <select id="getResult" resultType="map">
 		select * from testresult  where test_id=#{testId}
 	</select> 
-	<select id="GeneralTestgetDetail" resultMap="map">
+	<select id="GeneralTestgetDetail" resultType="map">
 		select 
 			a.test_name as testName,
 			a.test_type as testType,

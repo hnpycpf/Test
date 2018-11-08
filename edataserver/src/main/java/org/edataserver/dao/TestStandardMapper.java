@@ -22,7 +22,7 @@ public interface TestStandardMapper {
 
     int updateByPrimaryKey(TestStandard record);
 
-	List<TestStandard> getAllStandards();
+	List<Map<String,Object>> getAllStandards();
 
 	//20181107-wh
 	int input(TestStandard testStandard);
