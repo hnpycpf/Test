@@ -20,5 +20,7 @@ public interface StandardSerivce {
 
 	Map<String, Object> delete(String standardId);
 
+	Map<String, Object> getAllStandards();
+
 	
 }

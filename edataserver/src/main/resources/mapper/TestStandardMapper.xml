@@ -176,10 +176,10 @@
 		and a.standard_status=#{status} 
 	</if>
 	<if test="impleStartDate !=null and impleStartDate !=''">   
-		and a.createtime > #{impleStartDate}
+		and a.createtime &gt; #{impleStartDate}
 	</if>
 	<if test="impleEndDate !=null and impleEndDate !=''">   
-		and a.createtime < #{impleEndDate}
+		and a.createtime &lt; #{impleEndDate}
 	</if>
 	<if test="keyWord !=null and keyWord !=''">   
 		and a.standard_name like '%${keyWord}%'
