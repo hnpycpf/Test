@@ -19,10 +19,10 @@ public class SpecialtyTestController {
 	@Autowired
 	private StandardSerivce modularService;
 	
-	@GetMapping(value={"/getAllStandards"}) 
+	/*@GetMapping(value={"/getAllStandards"}) 
     @ResponseBody
     public Map<String,Object> getAllStandards (){
     	Map<String,Object> resMap=modularService.getAllStandards();
     	return resMap;
-        }
+        }*/
 }

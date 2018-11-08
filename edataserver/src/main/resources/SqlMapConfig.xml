@@ -11,5 +11,6 @@
     </plugins>
     <typeAliases>  
         <package name="org.edataserver.entity"/>  
-    </typeAliases> 
+    </typeAliases>
+    <package name="org.edataserver.dao"/>  
 </configuration>

@@ -10,7 +10,7 @@
 			and starttime like '%${year}-${month}%'
 	</if>
 	<if test="startDate !=null and startDate !='' and endDate !=null and endDate !=''">   
-			and starttime > #{startDate} and starttime < #{endDate}
+			and starttime &gt; #{startDate} and starttime &lt; #{endDate}
 	</if>
 	<if test="year !=null and year !='' and startDate ==null and startDate =='' and endDate ==null and endDate =='' and month ==null and month ==''">   
 			and starttime like '%${year}%'

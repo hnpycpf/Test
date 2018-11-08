@@ -5,11 +5,11 @@ import java.util.Date;
 public class Type {
     private String typeId;
 
-    private String standardId;
-
     private String typeName;
 
     private Date createtime;
+
+    private String typeCode;
 
     public String getTypeId() {
         return typeId;
@@ -17,14 +17,6 @@ public class Type {
 
     public void setTypeId(String typeId) {
         this.typeId = typeId == null ? null : typeId.trim();
-    }
-
-    public String getStandardId() {
-        return standardId;
-    }
-
-    public void setStandardId(String standardId) {
-        this.standardId = standardId == null ? null : standardId.trim();
     }
 
     public String getTypeName() {
@@ -41,5 +33,13 @@ public class Type {
 
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
+    }
+
+    public String getTypeCode() {
+        return typeCode;
+    }
+
+    public void setTypeCode(String typeCode) {
+        this.typeCode = typeCode == null ? null : typeCode.trim();
     }
 }
