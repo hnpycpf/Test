@@ -25,8 +25,15 @@ public class SuiteServiceimpl implements SuiteSerivce {
 		suite.setCreatetime(date);
 		//输入标准 取出id
 		suiteMapper.input(suite);
+		List<String> list=suite.getSuitStandard();
+		if(list==null||list.size()==0){
+			resMap.put("errorMsg", "SuitStandard为空");
+			resMap.put("result", "");
+			resMap.put("success", "false");
+			return resMap;
+		}
 		//遍历入库standard_id
-		for(String sid : suite.getSuitStandard()) {
+		for(String sid : list) {
 			  System.out.println(sid);
 			  SuitStandard suitStandard=new SuitStandard();
 			  suitStandard.setSuite_id(suite.getId());

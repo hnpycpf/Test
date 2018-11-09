@@ -129,15 +129,12 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="org.edataserver.model.TestStandard" >
     update teststandard
-    set user_id = #{userId,jdbcType=VARCHAR},
-      standard_name = #{standardName,jdbcType=VARCHAR},
-      standard_number = #{standardNumber,jdbcType=VARCHAR},
-      project_name = #{projectName,jdbcType=VARCHAR},
-      type_id = #{typeId,jdbcType=VARCHAR},
-      standard_file = #{standardFile,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
-      updatetime = #{updatetime,jdbcType=TIMESTAMP}
-    where standard_id = #{standardId,jdbcType=VARCHAR}
+    set user_id = #{userId},
+      standard_name = #{standardName},
+      standard_number = #{standardNumber},
+      project_name = #{projectName},
+      type_id = #{typeId},
+    where standard_id = #{standardId}
   </update>
   
   
@@ -168,7 +165,7 @@
   <!-- 20181108 -->
   <select id="getStandardList" parameterType="org.edataserver.entity.GetStandardList" resultMap="BaseResultMap">
   	select a.standard_id,a.standard_name,a.standard_number,b.type_name,a.project_name from teststandard a left join type b
-  	on  a.standard_id=b.standard_id
+  	on  a.type_id=b.type_id
   	<if test="standardTypeId !=null and standardTypeId !=''">   
 		and a.type_id=#{standardTypeId} 
 	</if>

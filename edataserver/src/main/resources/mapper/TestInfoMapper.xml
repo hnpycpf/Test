@@ -175,8 +175,8 @@
 	</insert>
 	
 	<select id="getTestTotal" parameterType="org.edataserver.entity.Performance" resultType="map">
-		slect a.name b.count(*) from user a left join testinfo b
-		where a.user_id=b.user_id and 1=1 
+		select count(*) from testinfo
+		where 1=1  
 		<if test="month !=null and month !=''">   
 			and starttime like '%${year}-${month}%'
 		</if>
@@ -190,6 +190,28 @@
 			and test_mode=#{testMode}
 		</if>
 	</select >
+	
+	
+	
+	<select id="getRank" parameterType="org.edataserver.entity.Performance" resultType="map">
+		select a.name,count(*) as number from user a left join testinfo b
+		on a.user_id=b.user_id 
+		where 1=1
+		<if test="month !=null and month !=''">   
+			and starttime like '%${year}-${month}%'
+		</if>
+		<if test="startDate !=null and startDate !='' and endDate !=null and endDate !=''">   
+			and starttime &gt; #{startDate} and starttime &lt; #{endDate}
+		</if>
+		<if test="year !=null and year !='' and startDate ==null and startDate =='' and endDate ==null and endDate =='' and month ==null and month ==''">   
+			and starttime like '%${year}%'
+		</if>
+		<if test="testMode !=null and testMode !=''">   
+			and test_mode=#{testMode}
+		</if>
+		group by a.name
+	</select >
+	
 	
 	<!-- 20181108-wh -->
 	<!-- specialtyTest -->

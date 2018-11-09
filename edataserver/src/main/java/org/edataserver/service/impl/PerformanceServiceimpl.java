@@ -22,7 +22,7 @@ public class PerformanceServiceimpl implements PerformanceSerivce {
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//判断季度是否有值
 		String quarter=performance.getQuarter();
-		if(quarter.length()!=0){
+		if(quarter!=null&&quarter.length()!=0&&quarter!=""){
 			if(quarter.equals("1")){
 				String startDate=performance.getYear()+"-1";
 				String endDate=performance.getYear()+"-3";
@@ -70,7 +70,7 @@ public class PerformanceServiceimpl implements PerformanceSerivce {
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//判断季度是否有值
 		String quarter=performance.getQuarter();
-		if(quarter.length()!=0){
+		if(quarter!=null&&quarter.length()!=0&&quarter!=""){
 			if(quarter.equals("1")){
 				String startDate=performance.getYear()+"-1";
 				String endDate=performance.getYear()+"-3";
