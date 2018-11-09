@@ -3,7 +3,7 @@ package org.edataserver.model;
 import java.util.Date;
 
 public class TestInfo {
-    private String testId;
+    private Integer testId;
 
     private String userId;
 
@@ -16,19 +16,30 @@ public class TestInfo {
     private String testMode;
 
     private String testState;
+    
+    private String applicant;
 
     private Date starttime;
 
     private Date endtime;
 
     private String testContent;
+    
 
-    public String getTestId() {
+	public String getApplicant() {
+		return applicant;
+	}
+
+	public void setApplicant(String applicant) {
+		this.applicant = applicant;
+	}
+
+	public Integer getTestId() {
         return testId;
     }
 
-    public void setTestId(String testId) {
-        this.testId = testId == null ? null : testId.trim();
+    public void setTestId(Integer testId) {
+        this.testId = testId;
     }
 
     public String getUserId() {
@@ -102,4 +113,33 @@ public class TestInfo {
     public void setTestContent(String testContent) {
         this.testContent = testContent == null ? null : testContent.trim();
     }
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TestInfo [testId=");
+		builder.append(testId);
+		builder.append(", userId=");
+		builder.append(userId);
+		builder.append(", testName=");
+		builder.append(testName);
+		builder.append(", testType=");
+		builder.append(testType);
+		builder.append(", testSkill=");
+		builder.append(testSkill);
+		builder.append(", testMode=");
+		builder.append(testMode);
+		builder.append(", testState=");
+		builder.append(testState);
+		builder.append(", starttime=");
+		builder.append(starttime);
+		builder.append(", endtime=");
+		builder.append(endtime);
+		builder.append(", testContent=");
+		builder.append(testContent);
+		builder.append("]");
+		return builder.toString();
+	}
+    
+    
 }

@@ -16,6 +16,16 @@ public class TestInfoVO extends TestInfo {
 	public void setStandard(List<String> standard) {
 		this.standard = standard;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TestInfoVO [standard=");
+		builder.append(standard);
+		builder.append("]");
+		return builder.toString();
+	}
+	
 	
 	
 }

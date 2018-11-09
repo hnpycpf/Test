@@ -1,5 +1,6 @@
 package org.edataserver.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public interface TestInfoMapper {
 
 	List<Map<String, Object>> getRank(Performance performance);
 
-	String input(TestInfoVO testStandardVO);
+	void input(TestInfoVO testStandardVO);
 
 	List<Map<String, Object>> getList(GetList getList);
 
@@ -40,4 +41,8 @@ public interface TestInfoMapper {
 	List<Map<String, Object>> getResult(@Param("testId")String testId);
 
 	List<Map<String, Object>> GeneralTestgetDetail(@Param("testId")String testId);
+
+
+	List<Map<String, Object>> getTestList(@Param("userId")String userId, @Param("testType")String testType, @Param("startDate")Date startDate, @Param("endDate")Date endDate, @Param("keyWord")String keyWord,
+			@Param("testMode")String testMode);
 }
