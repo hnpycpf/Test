@@ -13,6 +13,9 @@ import org.edataserver.model.TestStandard;
 import org.edataserver.service.StandardSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 @Service
 public class StandardServiceimpl implements StandardSerivce {
 	@Autowired
@@ -32,12 +35,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		List<Map<String,Object>> map=testStandardMapper.getAllStandards();
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getAllStandards 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		return resMap;
@@ -55,12 +58,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		//添加返回信息
 		if(i==0){
 			resMap.put("errorMsg", "getStandardTypeList 失败！");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "true");
 		}
 		return resMap;
@@ -74,12 +77,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		List<Map<String,Object>> map=typeMapper.getStandardTypeList();
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getStandardTypeList 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		return resMap;		
@@ -90,15 +93,19 @@ public class StandardServiceimpl implements StandardSerivce {
 		//创建返回状态值
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//查询
+		PageHelper.startPage(getStandardList.getCurrentPage(), getStandardList.getRows());
 		List<Map<String,Object>> map=testStandardMapper.getStandardList(getStandardList);
+		PageInfo info = new PageInfo(map);
+		long total = info.getTotal();
 		if(map.isEmpty()){
-			resMap.put("errorMsg", "getStandardList 失败！");
-			resMap.put("result", map);
+			resMap.put("errorMsg", "getStandardList 失败 或无匹配数据！");
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
+			resMap.put("total", total);
 			resMap.put("success", "true");
 		}
 		return resMap;		
@@ -112,12 +119,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		List<Map<String,Object>> map=testStandardMapper.getStandardById(standardId);
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getStandardById 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		return resMap;		
@@ -131,12 +138,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		int i=testStandardMapper.updateByPrimaryKeySelective(testStandard);
 		if(i==0){
 			resMap.put("errorMsg", "update 失败！");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "true");
 		}
 		return resMap;
@@ -150,12 +157,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		int i=testStandardMapper.deleteByPrimaryKey(standardId);
 		if(i==0){
 			resMap.put("errorMsg", "update 失败！");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "true");
 		}
 		return resMap;

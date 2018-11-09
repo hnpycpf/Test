@@ -61,12 +61,12 @@ public class GeneralTestSerivceImpl implements GeneralTestSerivce {
 		List<Map<String,Object>> map=testInfoMapper.getResult(testId);
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getResult 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		return resMap;
@@ -78,14 +78,15 @@ public class GeneralTestSerivceImpl implements GeneralTestSerivce {
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//查询
 		List<Map<String,Object>> map=testInfoMapper.GeneralTestgetDetail(testId);
+		System.out.println(map);
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getDetail 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		return resMap;

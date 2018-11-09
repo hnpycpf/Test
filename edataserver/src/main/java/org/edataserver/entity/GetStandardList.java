@@ -8,8 +8,8 @@ public class GetStandardList {
 	private Date impleStartDate;
 	private Date impleEndDate;
 	private String keyWord;
-	private String currentPage;
-	private String rows;
+	private Integer currentPage;
+	private Integer rows;
 	public String getStandardTypeId() {
 		return standardTypeId;
 	}
@@ -40,16 +40,17 @@ public class GetStandardList {
 	public void setKeyWord(String keyWord) {
 		this.keyWord = keyWord;
 	}
-	public String getCurrentPage() {
+
+	public Integer getCurrentPage() {
 		return currentPage;
 	}
-	public void setCurrentPage(String currentPage) {
+	public void setCurrentPage(Integer currentPage) {
 		this.currentPage = currentPage;
 	}
-	public String getRows() {
+	public Integer getRows() {
 		return rows;
 	}
-	public void setRows(String rows) {
+	public void setRows(Integer rows) {
 		this.rows = rows;
 	}
 	@Override

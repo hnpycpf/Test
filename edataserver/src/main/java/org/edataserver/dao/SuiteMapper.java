@@ -1,6 +1,11 @@
 package org.edataserver.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.edataserver.entity.GetSuitList;
 import org.edataserver.entity.SuitStandard;
 import org.edataserver.model.Suite;
 @Mapper
@@ -22,4 +27,13 @@ public interface SuiteMapper {
 	void  input(Suite suite);
 
 	void iputSuitStandard(SuitStandard suitStandard);
+
+	List<Map<String, Object>> getDetail(@Param("sutiId")String sutiId);
+
+	List<Map<String, Object>> getSuitById(@Param("sutiId")String sutiId);
+
+	List<Map<String, Object>> getSuitList(GetSuitList getSuitList);
+
+
+
 }

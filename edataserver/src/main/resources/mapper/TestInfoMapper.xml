@@ -114,6 +114,7 @@
 			</if>
 		</trim>
 	</insert>
+
 	<update id="updateByPrimaryKeySelective"
 		parameterType="org.edataserver.model.TestInfo">
 		update testinfo
@@ -192,11 +193,9 @@
 		#{testContent,jdbcType=LONGVARCHAR},#{applicant,jdbcType=VARCHAR})
 	</insert>
 
-	<select id="getTestTotal"
-		parameterType="org.edataserver.entity.Performance" resultType="map">
-		slect a.name b.count(*) from user a left join testinfo b
-		where
-		a.user_id=b.user_id and 1=1
+	<select id="getTestTotal" parameterType="org.edataserver.entity.Performance" resultType="map">
+		select count(*) from testinfo
+		where 1=1  
 		<if test="month !=null and month !=''">
 			and starttime like '%${year}-${month}%'
 		</if>
@@ -211,14 +210,41 @@
 		<if test="testMode !=null and testMode !=''">
 			and test_mode=#{testMode}
 		</if>
-	</select>
 
+	</select >
+	
+	
+	
+	<select id="getRank" parameterType="org.edataserver.entity.Performance" resultType="map">
+		select a.name,count(*) as number from user a left join testinfo b
+		on a.user_id=b.user_id 
+		where 1=1
+		<if test="month !=null and month !=''">   
+			and starttime like '%${year}-${month}%'
+		</if>
+		<if test="startDate !=null and startDate !='' and endDate !=null and endDate !=''">   
+			and starttime &gt; #{startDate} and starttime &lt; #{endDate}
+		</if>
+		<if test="year !=null and year !='' and startDate ==null and startDate =='' and endDate ==null and endDate =='' and month ==null and month ==''">   
+			and starttime like '%${year}%'
+		</if>
+		<if test="testMode !=null and testMode !=''">   
+			and test_mode=#{testMode}
+		</if>
+		group by a.name
+	</select >
 	<!-- 20181108-wh -->
 	<!-- specialtyTest -->
 	<select id="getList"
 		parameterType="org.edataserver.entity.GetList" resultType="map">
-		select test_id as testId,test_name as testName,test_type as
-		testType,applicant,starttime,test_state as testState,count(*) as total
+		select 
+			test_id as testId,
+			test_name as testName,
+			test_type as testType,
+			applicant,
+			starttime as applyDate,
+			test_state as testState,
+			count(*) as total
 		from testinfo
 		where 1=1
 		<if test="testType !=null and testType !=''">
@@ -244,27 +270,29 @@
 		</if>
 	</select>
 
-	<select id="getDetail"
-		parameterType="org.edataserver.entity.GetList" resultType="map">
+	<select id="getDetail" parameterType="org.edataserver.entity.GetList" resultType="map">
 		select
-		a.test_name as testName,
-		a.test_type as testType,
-		a.test_skill as testSkill,
-		a.starttime,
-		a.applicant,
-		a.test_content as testContent,
-		b.standard_id as standardId,
-		b.standard_name as standardName,
-		b.standard_number as standardNumber,
-		b.standard_source as standardSource
-		from testinfo a left join teststandard b
+			a.test_name as testName,
+			a.test_type as testType,
+			a.test_skill as testSkill,
+			a.starttime as applyDate,
+			a.applicant,
+			a.endtime as successDate,
+			a.test_content as testContent,
+			b.standard_id as standards,
+			b.standard_name as standardName,
+			b.standard_number as standardNumber,
+			b.standard_source as standardSource
+			from testinfo a left join teststandard b
 		on
-		a.user_id=b.user_id and a.test_id=#{testId}
+			a.user_id=b.user_id 
+		where
+			a.test_id=#{testId}
 	</select>
 
 	<!-- GeneralTest -->
 	<select id="getResult" resultType="map">
-		select * from testresult where
+		select test_result as testResult from testresult where
 		test_id=#{testId}
 	</select>
 	<select id="GeneralTestgetDetail" resultType="map">
@@ -272,6 +300,7 @@
 		a.test_name as testName,
 		a.test_type as testType,
 		a.test_skill as testSkill,
+		a.starttime as applyDate,
 		a.test_content as testContent,
 		b.standard_id as standardId,
 		b.standard_number as standardNumber,
