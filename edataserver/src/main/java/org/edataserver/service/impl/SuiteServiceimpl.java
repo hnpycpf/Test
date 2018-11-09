@@ -34,10 +34,10 @@ public class SuiteServiceimpl implements SuiteSerivce {
 		}
 		//遍历入库standard_id
 		for(String sid : list) {
-			  System.out.println(sid);
+			  //System.out.println(sid);
 			  SuitStandard suitStandard=new SuitStandard();
 			  suitStandard.setSuite_id(suite.getId());
-			  System.out.println();
+			  //System.out.println();
 			  suitStandard.setStandard_id(sid);
 			  suitStandard.setCreatetime(date);
 			  suiteMapper.iputSuitStandard(suitStandard);
