@@ -24,12 +24,13 @@ public class SuiteServiceimpl implements SuiteSerivce {
 		Date date=new Date();
 		suite.setCreatetime(date);
 		//输入标准 取出id
-		String id=suiteMapper.input(suite);
+		suiteMapper.input(suite);
 		//遍历入库standard_id
 		for(String sid : suite.getSuitStandard()) {
 			  System.out.println(sid);
 			  SuitStandard suitStandard=new SuitStandard();
-			  suitStandard.setSuite_id(id);
+			  suitStandard.setSuite_id(suite.getId());
+			  System.out.println();
 			  suitStandard.setStandard_id(sid);
 			  suitStandard.setCreatetime(date);
 			  suiteMapper.iputSuitStandard(suitStandard);
