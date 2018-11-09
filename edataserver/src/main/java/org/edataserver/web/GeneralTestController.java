@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Controller
 @RequestMapping(value={"/generalTest"})
@@ -29,11 +31,10 @@ public class GeneralTestController {
 	private GeneralTestSerivce generalTestSerivce;
 	//cpf
 	@PostMapping(value="/input")
-	public JSONObject input(@RequestParam TestInfoVO testInfoVO) {
+	public JSONObject input(TestInfoVO testInfoVO) {
 		JSONObject jb=new JSONObject();;
 		try {
 			generalTestSerivce.input(testInfoVO);
-			jb.put("reusltData", jb);
 			jb.put("success", true);
 			jb.put("errorMsg", null);
 		} catch (Exception e) {
@@ -45,17 +46,33 @@ public class GeneralTestController {
 		
 	}
 	@GetMapping(value="/getTestList")
-	public JSONObject getTestList(@RequestParam String userId,
-			@RequestParam Integer currentPage,
-			@RequestParam Integer rows,
-			@RequestParam String testType,
-			@RequestParam Date startDate,
-			@RequestParam Date endDate,
-			@RequestParam String keyWord,
-			@RequestParam String testMode
+	public JSONObject getTestList(@RequestParam(required=false) String userId,
+			@RequestParam(required=false,defaultValue="1")Integer currentPage,
+			@RequestParam(required=false,defaultValue="10")Integer rows,
+			@RequestParam(required=false)String testType,
+			@RequestParam(required=false)Date startDate,
+			@RequestParam(required=false)Date endDate,
+			@RequestParam(required=false)String keyWord,
+			@RequestParam(required=false)String testMode
 			) {
-		List<Map<String,Object>> list=generalTestSerivce.getTestList(userId,currentPage,rows,testType,startDate,endDate,keyWord,testMode);
-				return null;
+		JSONObject jb=new JSONObject();
+		try {
+			JSONObject jbTwo=new JSONObject();
+			PageHelper.startPage(currentPage, rows);
+			List<Map<String,Object>> list=generalTestSerivce.getTestList(userId,currentPage,rows,testType,startDate,endDate,keyWord,testMode);
+			PageInfo info = new PageInfo(list);
+			long total = info.getTotal();
+			jbTwo.put("total", total);
+			jbTwo.put("list", list);
+			jb.put("success", true);
+			jb.put("errorMsg", null);
+			jb.put("resultData", jbTwo);
+		} catch (Exception e) {
+			jb.put("success", false);
+			jb.put("errorMsg", null);
+			e.printStackTrace();
+		}
+		return jb;
 		
 	}
 	//wh

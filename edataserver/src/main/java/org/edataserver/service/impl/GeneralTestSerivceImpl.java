@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.edataserver.dao.StandardInfoMapper;
 import org.edataserver.dao.TestInfoMapper;
 import org.edataserver.dao.TestStandardMapper;
@@ -12,6 +14,7 @@ import org.edataserver.entity.TestInfoVO;
 import org.edataserver.model.StandardInfo;
 import org.edataserver.model.TestStandard;
 import org.edataserver.service.GeneralTestSerivce;
+import org.edataserver.util.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +35,11 @@ public class GeneralTestSerivceImpl implements GeneralTestSerivce {
 	private StandardInfoMapper standardInfoMapper;
 	
 	@Override
+	@Transactional
 	public void input(TestInfoVO testStandardVO) {
-		
+		testStandardVO.setTestState(Status.TEST_STATUS_INIT);
+		testStandardVO.setStarttime(new Date());
+		testStandardVO.setEndtime(new Date());
 		testInfoMapper.input(testStandardVO);
 		
 		standardInfoMapper.input(testStandardVO);
@@ -42,7 +48,7 @@ public class GeneralTestSerivceImpl implements GeneralTestSerivce {
 	public List<Map<String, Object>> getTestList(String userId, Integer currentPage, Integer rows, String testType,
 			Date startDate, Date endDate, String keyWord, String testMode) {
 		
-		List<Map<String, Object>> list=testStandardMapper.getTestList(userId,testType,startDate,endDate,keyWord,testMode);
+		List<Map<String, Object>> list=testInfoMapper.getTestList(userId,testType,startDate,endDate,keyWord,testMode);
 		return list;
 	}
 	
