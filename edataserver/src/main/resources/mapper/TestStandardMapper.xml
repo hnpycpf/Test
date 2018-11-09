@@ -164,8 +164,17 @@
   
   <!-- 20181108 -->
   <select id="getStandardList" parameterType="org.edataserver.entity.GetStandardList" resultMap="BaseResultMap">
-  	select a.standard_id,a.standard_name,a.standard_number,b.type_name,a.project_name from teststandard a left join type b
-  	on  a.type_id=b.type_id
+  	select 
+  		a.standard_id,
+  		a.standard_name,
+  		a.standard_number,
+  		b.type_name,
+  		a.project_name,
+  	from teststandard a 
+  	left inner type b
+  	on  
+  		a.type_id=b.type_id
+  	order by a.standard_id
   	<if test="standardTypeId !=null and standardTypeId !=''">   
 		and a.type_id=#{standardTypeId} 
 	</if>

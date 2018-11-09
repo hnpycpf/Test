@@ -237,8 +237,14 @@
 	<!-- specialtyTest -->
 	<select id="getList"
 		parameterType="org.edataserver.entity.GetList" resultType="map">
-		select test_id as testId,test_name as testName,test_type as
-		testType,applicant,starttime,test_state as testState,count(*) as total
+		select 
+			test_id as testId,
+			test_name as testName,
+			test_type as testType,
+			applicant,
+			starttime as applyDate,
+			test_state as testState,
+			count(*) as total
 		from testinfo
 		where 1=1
 		<if test="testType !=null and testType !=''">
@@ -264,27 +270,29 @@
 		</if>
 	</select>
 
-	<select id="getDetail"
-		parameterType="org.edataserver.entity.GetList" resultType="map">
+	<select id="getDetail" parameterType="org.edataserver.entity.GetList" resultType="map">
 		select
-		a.test_name as testName,
-		a.test_type as testType,
-		a.test_skill as testSkill,
-		a.starttime,
-		a.applicant,
-		a.test_content as testContent,
-		b.standard_id as standardId,
-		b.standard_name as standardName,
-		b.standard_number as standardNumber,
-		b.standard_source as standardSource
-		from testinfo a left join teststandard b
+			a.test_name as testName,
+			a.test_type as testType,
+			a.test_skill as testSkill,
+			a.starttime as applyDate,
+			a.applicant,
+			a.endtime as successDate,
+			a.test_content as testContent,
+			b.standard_id as standards,
+			b.standard_name as standardName,
+			b.standard_number as standardNumber,
+			b.standard_source as standardSource
+			from testinfo a left join teststandard b
 		on
-		a.user_id=b.user_id and a.test_id=#{testId}
+			a.user_id=b.user_id 
+		where
+			a.test_id=#{testId}
 	</select>
 
 	<!-- GeneralTest -->
 	<select id="getResult" resultType="map">
-		select * from testresult where
+		select test_result as testResult from testresult where
 		test_id=#{testId}
 	</select>
 	<select id="GeneralTestgetDetail" resultType="map">
@@ -292,6 +300,7 @@
 		a.test_name as testName,
 		a.test_type as testType,
 		a.test_skill as testSkill,
+		a.starttime as applyDate,
 		a.test_content as testContent,
 		b.standard_id as standardId,
 		b.standard_number as standardNumber,
