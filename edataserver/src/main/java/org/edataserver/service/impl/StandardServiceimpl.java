@@ -13,6 +13,9 @@ import org.edataserver.model.TestStandard;
 import org.edataserver.service.StandardSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 @Service
 public class StandardServiceimpl implements StandardSerivce {
 	@Autowired
@@ -90,7 +93,10 @@ public class StandardServiceimpl implements StandardSerivce {
 		//创建返回状态值
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//查询
+		PageHelper.startPage(getStandardList.getCurrentPage(), getStandardList.getRows());
 		List<Map<String,Object>> map=testStandardMapper.getStandardList(getStandardList);
+		PageInfo info = new PageInfo(map);
+		long total = info.getTotal();
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getStandardList 失败 或无匹配数据！");
 			resMap.put("resultData", map);
@@ -99,6 +105,7 @@ public class StandardServiceimpl implements StandardSerivce {
 		else{
 			resMap.put("errorMsg", "");
 			resMap.put("resultData", map);
+			resMap.put("total", total);
 			resMap.put("success", "true");
 		}
 		return resMap;		

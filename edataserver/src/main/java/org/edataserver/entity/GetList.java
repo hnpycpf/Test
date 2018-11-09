@@ -3,8 +3,8 @@ package org.edataserver.entity;
 import java.util.Date;
 
 public class GetList {
-	private	String currentPage;
-	private	String rows;
+	private	Integer currentPage;
+	private	Integer rows;
 	private	String testType;
 	private	String testState;
 	private	Date appStartDate;
@@ -12,16 +12,17 @@ public class GetList {
 	private	String keyWord;
 	private	Date successStartDate;
 	private	Date successEndDate;
-	public String getCurrentPage() {
+
+	public Integer getCurrentPage() {
 		return currentPage;
 	}
-	public void setCurrentPage(String currentPage) {
+	public void setCurrentPage(Integer currentPage) {
 		this.currentPage = currentPage;
 	}
-	public String getRows() {
+	public Integer getRows() {
 		return rows;
 	}
-	public void setRows(String rows) {
+	public void setRows(Integer rows) {
 		this.rows = rows;
 	}
 	public String getTestType() {

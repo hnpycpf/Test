@@ -12,6 +12,9 @@ import org.edataserver.model.Suite;
 import org.edataserver.service.SuiteSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 @Service
 public class SuiteServiceimpl implements SuiteSerivce {
 	@Autowired
@@ -132,7 +135,11 @@ public class SuiteServiceimpl implements SuiteSerivce {
 		//创建返回状态值
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//查询
+		PageHelper.startPage(getSuitList.getCurrentPage(), getSuitList.getRows());
 		List<Map<String,Object>> map=suiteMapper.getSuitList(getSuitList);
+		PageInfo info = new PageInfo(map);
+		long total = info.getTotal();
+		
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getDetail 失败！");
 			resMap.put("resultData", map);
@@ -140,6 +147,7 @@ public class SuiteServiceimpl implements SuiteSerivce {
 		}
 		else{
 			resMap.put("errorMsg", "");
+			resMap.put("total", total);
 			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}

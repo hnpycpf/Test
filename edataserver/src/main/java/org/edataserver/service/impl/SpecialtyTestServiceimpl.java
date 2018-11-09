@@ -11,6 +11,9 @@ import org.edataserver.service.SpecialtyTestSerivce;
 import org.edataserver.service.StandardSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 @Service
 public class SpecialtyTestServiceimpl implements SpecialtyTestSerivce {
 	@Autowired
@@ -40,7 +43,10 @@ public class SpecialtyTestServiceimpl implements SpecialtyTestSerivce {
 		//创建返回状态值
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//查询
-		List<Map<String,Object>> map=testInfoMapper.getList(getList);	
+		PageHelper.startPage(getList.getCurrentPage(), getList.getRows());
+		List<Map<String,Object>> map=testInfoMapper.getList(getList);
+		PageInfo info = new PageInfo(map);
+		long total = info.getTotal();
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getList 失败！");
 			resMap.put("resultData", map);
@@ -49,6 +55,7 @@ public class SpecialtyTestServiceimpl implements SpecialtyTestSerivce {
 		else{
 			resMap.put("errorMsg", "");
 			resMap.put("resultData", map);
+			resMap.put("total", total);
 			resMap.put("success", "true");
 		}
 		return resMap;
