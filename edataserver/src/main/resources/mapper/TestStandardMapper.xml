@@ -164,14 +164,14 @@
   
   <!-- 20181108 -->
   <select id="getStandardList" parameterType="org.edataserver.entity.GetStandardList" resultMap="BaseResultMap">
-  	select 
+	select 
   		a.standard_id,
   		a.standard_name,
   		a.standard_number,
   		b.type_name,
-  		a.project_name,
+  		a.project_name
   	from teststandard a 
-  	left inner type b
+  	INNER  JOIN type b
   	on  
   		a.type_id=b.type_id
   	order by a.standard_id

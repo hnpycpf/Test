@@ -92,7 +92,7 @@ public class StandardServiceimpl implements StandardSerivce {
 		//查询
 		List<Map<String,Object>> map=testStandardMapper.getStandardList(getStandardList);
 		if(map.isEmpty()){
-			resMap.put("errorMsg", "getStandardList 失败！");
+			resMap.put("errorMsg", "getStandardList 失败 或无匹配数据！");
 			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
