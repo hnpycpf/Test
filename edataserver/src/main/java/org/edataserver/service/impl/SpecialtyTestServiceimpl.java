@@ -43,12 +43,12 @@ public class SpecialtyTestServiceimpl implements SpecialtyTestSerivce {
 		List<Map<String,Object>> map=testInfoMapper.getList(getList);	
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getList 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		return resMap;
@@ -61,12 +61,12 @@ public class SpecialtyTestServiceimpl implements SpecialtyTestSerivce {
 		List<Map<String,Object>> map=testInfoMapper.getDetail(testId);	
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getDetail 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		return resMap;

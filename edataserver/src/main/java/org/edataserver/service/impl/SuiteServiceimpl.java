@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.edataserver.dao.SuiteMapper;
+import org.edataserver.entity.GetSuitList;
 import org.edataserver.entity.SuitStandard;
 import org.edataserver.model.Suite;
 import org.edataserver.service.SuiteSerivce;
@@ -28,7 +29,7 @@ public class SuiteServiceimpl implements SuiteSerivce {
 		List<String> list=suite.getSuitStandard();
 		if(list==null||list.size()==0){
 			resMap.put("errorMsg", "SuitStandard为空");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "false");
 			return resMap;
 		}
@@ -36,7 +37,7 @@ public class SuiteServiceimpl implements SuiteSerivce {
 		for(String sid : list) {
 			  //System.out.println(sid);
 			  SuitStandard suitStandard=new SuitStandard();
-			  suitStandard.setSuite_id(suite.getId());
+			  suitStandard.setSuite_id(suite.getSuitId());
 			  //System.out.println();
 			  suitStandard.setStandard_id(sid);
 			  suitStandard.setCreatetime(date);
@@ -44,9 +45,104 @@ public class SuiteServiceimpl implements SuiteSerivce {
 			}
 		//返回状态值
 			resMap.put("errorMsg", "");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "true");
 
+		return resMap;
+	}
+
+	@Override
+	public Map<String, Object> getDetail(String sutiId) {
+		//创建返回状态值
+		Map<String,Object> resMap=new HashMap<String, Object>();
+		//查询
+		List<Map<String,Object>> map=suiteMapper.getDetail(sutiId);
+		if(map.isEmpty()){
+			resMap.put("errorMsg", "getDetail 失败！");
+			resMap.put("resultData", map);
+			resMap.put("success", "false");
+		}
+		else{
+			resMap.put("errorMsg", "");
+			resMap.put("resultData", map);
+			resMap.put("success", "true");
+		}
+		return resMap;
+	}
+
+	@Override
+	public Map<String, Object> update(Suite suite) {
+		//创建返回状态值
+		Map<String,Object> resMap=new HashMap<String, Object>();
+		//查询
+		int i=suiteMapper.updateByPrimaryKeySelective(suite);
+		if(i==0){
+			resMap.put("errorMsg", "update 失败！");
+			resMap.put("resultData", "");
+			resMap.put("success", "false");
+		}
+		else{
+			resMap.put("errorMsg", "");
+			resMap.put("resultData", "");
+			resMap.put("success", "true");
+		}
+		return resMap;
+	}
+
+	@Override
+	public Map<String, Object> getSuitById(String sutiId) {
+		//创建返回状态值
+		Map<String,Object> resMap=new HashMap<String, Object>();
+		//查询
+		List<Map<String,Object>> map=suiteMapper.getSuitById(sutiId);
+		if(map.isEmpty()){
+			resMap.put("errorMsg", "getDetail 失败！");
+			resMap.put("resultData", map);
+			resMap.put("success", "false");
+		}
+		else{
+			resMap.put("errorMsg", "");
+			resMap.put("resultData", map);
+			resMap.put("success", "true");
+		}
+		return resMap;
+	}
+
+	@Override
+	public Map<String, Object> delete(String suitId) {
+		//创建返回状态值
+		Map<String,Object> resMap=new HashMap<String, Object>();
+		//查询
+		int i=suiteMapper.deleteByPrimaryKey(suitId);
+		if(i==0){
+			resMap.put("errorMsg", "delete 失败！");
+			resMap.put("resultData", "");
+			resMap.put("success", "false");
+		}
+		else{
+			resMap.put("errorMsg", "");
+			resMap.put("resultData", "");
+			resMap.put("success", "true");
+		}
+		return resMap;
+	}
+
+	@Override
+	public Map<String, Object> getSuitList(GetSuitList getSuitList) {
+		//创建返回状态值
+		Map<String,Object> resMap=new HashMap<String, Object>();
+		//查询
+		List<Map<String,Object>> map=suiteMapper.getSuitList(getSuitList);
+		if(map.isEmpty()){
+			resMap.put("errorMsg", "getDetail 失败！");
+			resMap.put("resultData", map);
+			resMap.put("success", "false");
+		}
+		else{
+			resMap.put("errorMsg", "");
+			resMap.put("resultData", map);
+			resMap.put("success", "true");
+		}
 		return resMap;
 	}
 

@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Suite {
-    private String id;
+    private String suitId;
 
     private String suitName;
 
@@ -22,12 +22,12 @@ public class Suite {
     
     private List<String> suitStandard;
 
-    public String getId() {
-        return id;
+    public String getSuitId() {
+        return suitId;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setSuitId(String id) {
+        this.suitId = id == null ? null : id.trim();
     }
 
     public String getSuitName() {

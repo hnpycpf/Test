@@ -32,12 +32,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		List<Map<String,Object>> map=testStandardMapper.getAllStandards();
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getAllStandards 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		return resMap;
@@ -55,12 +55,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		//添加返回信息
 		if(i==0){
 			resMap.put("errorMsg", "getStandardTypeList 失败！");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "true");
 		}
 		return resMap;
@@ -74,12 +74,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		List<Map<String,Object>> map=typeMapper.getStandardTypeList();
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getStandardTypeList 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		return resMap;		
@@ -93,12 +93,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		List<Map<String,Object>> map=testStandardMapper.getStandardList(getStandardList);
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getStandardList 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		return resMap;		
@@ -112,12 +112,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		List<Map<String,Object>> map=testStandardMapper.getStandardById(standardId);
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getStandardById 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		return resMap;		
@@ -131,12 +131,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		int i=testStandardMapper.updateByPrimaryKeySelective(testStandard);
 		if(i==0){
 			resMap.put("errorMsg", "update 失败！");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "true");
 		}
 		return resMap;
@@ -150,12 +150,12 @@ public class StandardServiceimpl implements StandardSerivce {
 		int i=testStandardMapper.deleteByPrimaryKey(standardId);
 		if(i==0){
 			resMap.put("errorMsg", "update 失败！");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", "");
+			resMap.put("resultData", "");
 			resMap.put("success", "true");
 		}
 		return resMap;

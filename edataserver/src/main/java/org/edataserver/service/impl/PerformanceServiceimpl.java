@@ -53,12 +53,12 @@ public class PerformanceServiceimpl implements PerformanceSerivce {
 		List<Map<String,Object>> map=testInfoMapper.getTestTotal(performance);
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getTestTotal 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		//返回
@@ -101,13 +101,13 @@ public class PerformanceServiceimpl implements PerformanceSerivce {
 		List<Map<String,Object>> map=testInfoMapper.getRank(performance);
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getRank 失败！");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "false");
 		}
 		else{
 		
 			resMap.put("errorMsg", "");
-			resMap.put("result", map);
+			resMap.put("resultData", map);
 			resMap.put("success", "true");
 		}
 		//返回
