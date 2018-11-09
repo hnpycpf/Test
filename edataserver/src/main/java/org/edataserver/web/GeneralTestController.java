@@ -84,7 +84,8 @@ public class GeneralTestController {
     }
 	@GetMapping(value={"/getDetail"}) 
     @ResponseBody
-    public Map<String,Object> getDetail (String testId){
+    public Map<String,Object> getDetail (
+    		 String testId){
     	Map<String,Object> resMap=generalTestSerivce.getDetail(testId);
     	return resMap;
     }
