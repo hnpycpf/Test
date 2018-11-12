@@ -243,8 +243,7 @@
 			test_type as testType,
 			applicant,
 			starttime as applyDate,
-			test_state as testState,
-			count(*) as total
+			test_state as testState
 		from testinfo
 		where 1=1
 		<if test="testType !=null and testType !=''">
