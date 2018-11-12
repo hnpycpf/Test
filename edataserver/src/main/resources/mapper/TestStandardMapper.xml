@@ -140,7 +140,7 @@
   
 	<!-- 20181107-wh -->
     <select id="getAllStandards" resultType="map">
-         SELECT standard_number,standard_name,standard_id FROM teststandard 
+         SELECT standard_number as standardNumber ,standard_name as standardName ,standard_id as standardId FROM teststandard 
     </select>
     
     <insert id="input" parameterType="org.edataserver.model.TestStandard" >

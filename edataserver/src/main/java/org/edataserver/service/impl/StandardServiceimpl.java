@@ -97,15 +97,17 @@ public class StandardServiceimpl implements StandardSerivce {
 		List<Map<String,Object>> map=testStandardMapper.getStandardList(getStandardList);
 		PageInfo info = new PageInfo(map);
 		long total = info.getTotal();
+		Map<String,Object> resMapList=new HashMap<String, Object>();
+		resMapList.put("list", map);
+		resMapList.put("total", total);
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getStandardList 失败 或无匹配数据！");
-			resMap.put("resultData", map);
+			resMap.put("resultData", resMapList);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("resultData", map);
-			resMap.put("total", total);
+			resMap.put("resultData", resMapList);
 			resMap.put("success", "true");
 		}
 		return resMap;		

@@ -139,16 +139,17 @@ public class SuiteServiceimpl implements SuiteSerivce {
 		List<Map<String,Object>> map=suiteMapper.getSuitList(getSuitList);
 		PageInfo info = new PageInfo(map);
 		long total = info.getTotal();
-		
+		HashMap<String, Object> resMapList = new HashMap<String,Object>();
+		resMapList.put("total", total);
+		resMapList.put("list",map);
 		if(map.isEmpty()){
 			resMap.put("errorMsg", "getDetail 失败！");
-			resMap.put("resultData", map);
+			resMap.put("resultData", resMapList);
 			resMap.put("success", "false");
 		}
 		else{
 			resMap.put("errorMsg", "");
-			resMap.put("total", total);
-			resMap.put("resultData", map);
+			resMap.put("resultData", resMapList);
 			resMap.put("success", "true");
 		}
 		return resMap;
