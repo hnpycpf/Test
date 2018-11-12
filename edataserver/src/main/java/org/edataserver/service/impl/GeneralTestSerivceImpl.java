@@ -77,9 +77,9 @@ public class GeneralTestSerivceImpl implements GeneralTestSerivce {
 		//创建返回状态值
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//查询
-		List<Map<String,Object>> map=testInfoMapper.GeneralTestgetDetail(testId);
+		org.edataserver.model.TestInfoVO  map=testInfoMapper.GeneralTestgetDetail(testId);
 		System.out.println(map);
-		if(map.isEmpty()){
+		if(map==null){
 			resMap.put("errorMsg", "getDetail 失败！");
 			resMap.put("resultData", map);
 			resMap.put("success", "false");

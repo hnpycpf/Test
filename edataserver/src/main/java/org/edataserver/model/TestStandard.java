@@ -2,6 +2,8 @@ package org.edataserver.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class TestStandard {
     private String standardId;
 

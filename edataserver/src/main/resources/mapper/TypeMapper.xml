@@ -80,8 +80,8 @@
     where type_id = #{typeId,jdbcType=VARCHAR}
   </update>
   <!-- 20181107-wh -->
-  <select id="getStandardTypeList" resultMap="BaseResultMap">
-  	select type_id,type_name from type
+  <select id="getStandardTypeList" resultType="map">
+  	select type_id as standardTypeId,type_name as standardTypeName from type
   </select>
   
   

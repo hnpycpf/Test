@@ -36,11 +36,11 @@ public interface TestInfoMapper {
 
 	List<Map<String, Object>> getList(GetList getList);
 
-	List<Map<String, Object>> getDetail(@Param("testId")String testId);
+	org.edataserver.model.TestInfoVO getDetail(@Param("testId")String testId);
 	//wh
 	List<Map<String, Object>> getResult(@Param("testId")String testId);
 
-	List<Map<String, Object>> GeneralTestgetDetail(@Param("testId")String testId);
+	org.edataserver.model.TestInfoVO GeneralTestgetDetail(@Param("testId")String testId);
 
 
 	List<Map<String, Object>> getTestList(@Param("userId")String userId, @Param("testType")String testType, @Param("startDate")Date startDate, @Param("endDate")Date endDate, @Param("keyWord")String keyWord,
