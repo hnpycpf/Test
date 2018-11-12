@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.edataserver.dao.TestStandardMapper" >
+  <resultMap id="BaseResultMap" type="org.edataserver.model.TestStandard" >
+    <id column="standard_id" property="standardId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="standard_name" property="standardName" jdbcType="VARCHAR" />
+    <result column="standard_number" property="standardNumber" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="VARCHAR" />
+    <result column="standard_file" property="standardFile" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    standard_id, user_id, standard_name, standard_number, project_name, type_id, standard_file, 
+    createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from teststandard
+    where standard_id = #{standardId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from teststandard
+    where standard_id = #{standardId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.edataserver.model.TestStandard" >
+    insert into teststandard (standard_id, user_id, standard_name, 
+      standard_number, project_name, type_id, 
+      standard_file, createtime, updatetime
+      )
+    values (#{standardId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{standardName,jdbcType=VARCHAR}, 
+      #{standardNumber,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, 
+      #{standardFile,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.edataserver.model.TestStandard" >
+    insert into teststandard
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="standardId != null" >
+        standard_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="standardName != null" >
+        standard_name,
+      </if>
+      <if test="standardNumber != null" >
+        standard_number,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="standardFile != null" >
+        standard_file,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="standardId != null" >
+        #{standardId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="standardName != null" >
+        #{standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="standardNumber != null" >
+        #{standardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="standardFile != null" >
+        #{standardFile,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.edataserver.model.TestStandard" >
+    update teststandard
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="standardName != null" >
+        standard_name = #{standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="standardNumber != null" >
+        standard_number = #{standardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="standardFile != null" >
+        standard_file = #{standardFile,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where standard_id = #{standardId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.edataserver.model.TestStandard" >
+    update teststandard
+    set user_id = #{userId},
+      standard_name = #{standardName},
+      standard_number = #{standardNumber},
+      project_name = #{projectName},
+      type_id = #{typeId},
+    where standard_id = #{standardId}
+  </update>
+  
+  
+	<!-- 20181107-wh -->
+    <select id="getAllStandards" resultType="map">
+         SELECT standard_number as standardNumber ,standard_name as standardName ,standard_id as standardId FROM teststandard 
+    </select>
+    
+    <insert id="input" parameterType="org.edataserver.model.TestStandard" >
+    insert into teststandard (
+    	standard_name, 
+      	standard_number, 
+      	project_name, 
+      	type_id, 
+      	standard_file, 
+      	createtime
+      )
+    values (
+    	#{standardName},
+    	#{standardNumber},
+    	#{projectName},
+    	#{typeId},
+    	#{standardFile},
+    	#{createtime}
+      )
+  </insert>
+  
+  <!-- 20181108 -->
+  <select id="getStandardList" parameterType="org.edataserver.entity.GetStandardList" resultMap="BaseResultMap">
+	select 
+  		a.standard_id,
+  		a.standard_name,
+  		a.standard_number,
+  		b.type_name,
+  		a.project_name
+  	from teststandard a 
+  	INNER  JOIN type b
+  	on  
+  		a.type_id=b.type_id
+  	order by a.standard_id
+  	<if test="standardTypeId !=null and standardTypeId !=''">   
+		and a.type_id=#{standardTypeId} 
+	</if>
+	<if test="status !=null and status !=''">   
+		and a.standard_status=#{status} 
+	</if>
+	<if test="impleStartDate !=null and impleStartDate !=''">   
+		and a.createtime &gt; #{impleStartDate}
+	</if>
+	<if test="impleEndDate !=null and impleEndDate !=''">   
+		and a.createtime &lt; #{impleEndDate}
+	</if>
+	<if test="keyWord !=null and keyWord !=''">   
+		and a.standard_name like '%${keyWord}%'
+	</if>
+  </select>
+  
+  <select id="getStandardById"  resultMap="BaseResultMap">
+  	select standard_id,standard_name,standard_number,type_id,project_name from teststandard 
+  	where standard_id=#{standardId}
+  </select>
+  	
+<!--   <update id="update">
+  	update teststandard set 
+  </update>
+   -->
+</mapper>
