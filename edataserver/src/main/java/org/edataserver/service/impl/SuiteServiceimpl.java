@@ -134,24 +134,33 @@ public class SuiteServiceimpl implements SuiteSerivce {
 	public Map<String, Object> getSuitList(GetSuitList getSuitList) {
 		//创建返回状态值
 		Map<String,Object> resMap=new HashMap<String, Object>();
-		//查询
-		PageHelper.startPage(getSuitList.getCurrentPage(), getSuitList.getRows());
-		List<Map<String,Object>> map=suiteMapper.getSuitList(getSuitList);
-		PageInfo info = new PageInfo(map);
-		long total = info.getTotal();
-		
-		if(map.isEmpty()){
-			resMap.put("errorMsg", "getDetail 失败！");
-			resMap.put("resultData", map);
+		//查询	
+		// 判断 分页
+		if(getSuitList.getCurrentPage()==null||getSuitList.getRows()==null){
+			resMap.put("errorMsg", "分页信息不能为空！");
+			resMap.put("resultData", "");
 			resMap.put("success", "false");
+			return resMap;
 		}
 		else{
-			resMap.put("errorMsg", "");
-			resMap.put("total", total);
-			resMap.put("resultData", map);
-			resMap.put("success", "true");
+			PageHelper.startPage(getSuitList.getCurrentPage(), getSuitList.getRows());
+			List<Map<String,Object>> map=suiteMapper.getSuitList(getSuitList);
+			PageInfo info = new PageInfo(map);
+			long total = info.getTotal();
+			
+			if(map.isEmpty()){
+				resMap.put("errorMsg", "getDetail 失败！");
+				resMap.put("resultData", map);
+				resMap.put("success", "false");
+			}
+			else{
+				resMap.put("errorMsg", "");
+				resMap.put("total", total);
+				resMap.put("resultData", map);
+				resMap.put("success", "true");
+			}
+			return resMap;
 		}
-		return resMap;
 	}
 
 }

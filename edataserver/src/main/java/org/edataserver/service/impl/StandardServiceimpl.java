@@ -93,22 +93,31 @@ public class StandardServiceimpl implements StandardSerivce {
 		//创建返回状态值
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//查询
-		PageHelper.startPage(getStandardList.getCurrentPage(), getStandardList.getRows());
-		List<Map<String,Object>> map=testStandardMapper.getStandardList(getStandardList);
-		PageInfo info = new PageInfo(map);
-		long total = info.getTotal();
-		if(map.isEmpty()){
-			resMap.put("errorMsg", "getStandardList 失败 或无匹配数据！");
-			resMap.put("resultData", map);
+		//判断分页信息
+		if(getStandardList.getCurrentPage()==null||getStandardList.getRows()==null){
+			resMap.put("errorMsg", "分页信息不能为空！");
+			resMap.put("resultData", "");
 			resMap.put("success", "false");
+			return resMap;
 		}
 		else{
-			resMap.put("errorMsg", "");
-			resMap.put("resultData", map);
-			resMap.put("total", total);
-			resMap.put("success", "true");
+			PageHelper.startPage(getStandardList.getCurrentPage(), getStandardList.getRows());
+			List<Map<String,Object>> map=testStandardMapper.getStandardList(getStandardList);
+			PageInfo info = new PageInfo(map);
+			long total = info.getTotal();
+			if(map.isEmpty()){
+				resMap.put("errorMsg", "getStandardList 失败 或无匹配数据！");
+				resMap.put("resultData", map);
+				resMap.put("success", "false");
+			}
+			else{
+				resMap.put("errorMsg", "");
+				resMap.put("resultData", map);
+				resMap.put("total", total);
+				resMap.put("success", "true");
+			}
+			return resMap;		
 		}
-		return resMap;		
 	}
 	//20181108-wh
 	@Override
