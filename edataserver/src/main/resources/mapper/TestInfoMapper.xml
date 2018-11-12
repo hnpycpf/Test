@@ -216,7 +216,7 @@
 	
 	
 	<select id="getRank" parameterType="org.edataserver.entity.Performance" resultType="map">
-		select a.name,count(*) as number from user a left join testinfo b
+		select a.name,count(*) as number from user a inner join testinfo b
 		on a.user_id=b.user_id 
 		where 1=1
 		<if test="month !=null and month !=''">   
@@ -283,7 +283,7 @@
 			b.standard_name as standardName,
 			b.standard_number as standardNumber,
 			b.standard_source as standardSource
-			from testinfo a left join teststandard b
+			from testinfo a inner join teststandard b
 		on
 			a.user_id=b.user_id 
 		where
@@ -305,13 +305,13 @@
 		b.standard_id as standardId,
 		b.standard_number as standardNumber,
 		b.standard_name as standsrdName
-		from testinfo a left join teststandard b
+		from testinfo a inner join teststandard b
 		on a.user_id=b.user_id and a.test_id=#{testId}
 
 	</select>
 	<select id="getTestList" resultType="map">
 		select t.test_id testId, t.test_name testName, t.test_type testType, t.endtime successDate   from testinfo t 
-		left join user u on t.user_id=u.user_id
+		inner join user u on t.user_id=u.user_id
 		<where>
 			<if test="userId != null">
 			and u.user_id=#{userId}
