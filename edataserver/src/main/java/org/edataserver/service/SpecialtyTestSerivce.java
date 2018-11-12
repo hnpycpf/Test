@@ -7,7 +7,6 @@ import java.util.Map;
 import org.edataserver.entity.GetList;
 
 public interface SpecialtyTestSerivce {
-    Map<String, Object> getAllStandards();
 
 	Map<String, Object> getList(GetList getList);
 

@@ -242,7 +242,7 @@
 
 	<select id="getRank"
 		parameterType="org.edataserver.entity.Performance" resultType="map">
-		select a.name,count(*) as number from user a left join testinfo b
+		select a.name,count(*) as number from user a inner join testinfo b
 		on
 		a.user_id=b.user_id
 		where 1=1

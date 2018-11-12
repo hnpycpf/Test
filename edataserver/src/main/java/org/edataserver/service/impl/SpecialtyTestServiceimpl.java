@@ -21,47 +21,37 @@ public class SpecialtyTestServiceimpl implements SpecialtyTestSerivce {
 	private TestInfoMapper testInfoMapper;
 	
 	@Override
-	public Map<String, Object> getAllStandards() {
-		//创建返回状态值
-		/*Map<String,Object> resMap=new HashMap<String, Object>();
-		//查询
-		List<Map<String,Object>> map=modularDao.getAllStandards();
-		if(map.isEmpty()){
-			resMap.put("errorMsg", "getAllStandards 失败！");
-			resMap.put("result", map);
-			resMap.put("success", "false");
-		}
-		else{
-			resMap.put("errorMsg", "");
-			resMap.put("result", map);
-			resMap.put("success", "true");
-		}
-		*/
-		return null;
-	}
-	@Override
 	public Map<String, Object> getList(GetList getList) {
 		//创建返回状态值
 		Map<String,Object> resMap=new HashMap<String, Object>();
 		//查询
-		PageHelper.startPage(getList.getCurrentPage(), getList.getRows());
-		List<Map<String,Object>> map=testInfoMapper.getList(getList);
-		PageInfo info = new PageInfo(map);
-		long total = info.getTotal();
-		Map<String,Object> resMapList=new HashMap<String, Object>();
-		resMapList.put("list", map);
-		resMapList.put("total", total);
-		if(map.isEmpty()){
-			resMap.put("errorMsg", "getList 失败！");
-			resMap.put("resultData", resMapList);
-			resMap.put("success", true);
+		//判断分页信息
+		if(getList.getCurrentPage()==null||getList.getRows()==null){
+			resMap.put("errorMsg", "分页信息不能为空！");
+			resMap.put("resultData", "");
+			resMap.put("success", "false");
+			return resMap;
 		}
 		else{
-			resMap.put("errorMsg", "");
-			resMap.put("resultData", resMapList);
-			resMap.put("success", false);
+			PageHelper.startPage(getList.getCurrentPage(), getList.getRows());
+			List<Map<String,Object>> map=testInfoMapper.getList(getList);
+			PageInfo info = new PageInfo(map);
+			HashMap<String, Object> resMapList = new HashMap<String,Object>();
+			long total = info.getTotal();
+			resMapList.put("list", map);
+			resMapList.put("total",total);
+			if(map.isEmpty()){
+				resMap.put("errorMsg", "getList 失败！");
+				resMap.put("resultData", resMapList);
+				resMap.put("success", "false");
+			}
+			else{
+				resMap.put("errorMsg", "");
+				resMap.put("resultData", resMapList);
+				resMap.put("success", "true");
+			}
+			return resMap;
 		}
-		return resMap;
 	}
 	@Override
 	public Map<String, Object> getDetail(String testId) {
