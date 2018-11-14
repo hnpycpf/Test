@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.edataserver.dao.SuiteMapper">
+  <resultMap id="BaseResultMap" type="org.edataserver.model.Suite">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="suit_name" jdbcType="VARCHAR" property="suitName" />
+    <result column="test_type" jdbcType="VARCHAR" property="testType" />
+    <result column="skill_type" jdbcType="VARCHAR" property="skillType" />
+    <result column="suit_util" jdbcType="VARCHAR" property="suitUtil" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.edataserver.model.Suite">
+    <result column="suit_guide" jdbcType="LONGVARCHAR" property="suitGuide" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, suit_name, test_type, skill_type, suit_util, createtime, updatetime
+  </sql>
+  <sql id="Blob_Column_List">
+    suit_guide
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from suite
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from suite
+    where id = #{suitId}
+  </delete>
+  <insert id="insert" parameterType="org.edataserver.model.Suite">
+    insert into suite (id, suit_name, test_type, 
+      skill_type, suit_util, createtime, 
+      updatetime, suit_guide)
+    values (#{id,jdbcType=VARCHAR}, #{suitName,jdbcType=VARCHAR}, #{testType,jdbcType=VARCHAR}, 
+      #{skillType,jdbcType=VARCHAR}, #{suitUtil,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{suitGuide,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.edataserver.model.Suite">
+    insert into suite
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="suitName != null">
+        suit_name,
+      </if>
+      <if test="testType != null">
+        test_type,
+      </if>
+      <if test="skillType != null">
+        skill_type,
+      </if>
+      <if test="suitUtil != null">
+        suit_util,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="suitGuide != null">
+        suit_guide,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="suitName != null">
+        #{suitName,jdbcType=VARCHAR},
+      </if>
+      <if test="testType != null">
+        #{testType,jdbcType=VARCHAR},
+      </if>
+      <if test="skillType != null">
+        #{skillType,jdbcType=VARCHAR},
+      </if>
+      <if test="suitUtil != null">
+        #{suitUtil,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="suitGuide != null">
+        #{suitGuide,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.edataserver.model.Suite">
+    update suite
+    set
+       suit_name = #{suitName},
+        test_type = #{testType},
+        skill_type = #{skillType}
+    where 
+    	id = #{suitId}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.edataserver.model.Suite">
+    update suite
+    set suit_name = #{suitName,jdbcType=VARCHAR},
+      test_type = #{testType,jdbcType=VARCHAR},
+      skill_type = #{skillType,jdbcType=VARCHAR},
+      suit_util = #{suitUtil,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      suit_guide = #{suitGuide,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.edataserver.model.Suite">
+    update suite
+    set suit_name = #{suitName,jdbcType=VARCHAR},
+      test_type = #{testType,jdbcType=VARCHAR},
+      skill_type = #{skillType,jdbcType=VARCHAR},
+      suit_util = #{suitUtil,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 20181107-wh -->
+  <insert id="input"  useGeneratedKeys="true" keyProperty="suitId" parameterType="org.edataserver.model.Suite">
+  	insert into suite (
+  		suit_name, 
+  		test_type, 
+      	skill_type, 
+      	suit_util, 
+      	createtime, 
+       	suit_guide)
+    values(
+    	#{suitName},
+    	#{testType},
+    	#{skillType},
+    	#{suitUtil},
+    	#{createtime},
+    	#{suitGuide}
+    )
+  
+  </insert>
+  
+  <insert id="iputSuitStandard" parameterType="org.edataserver.entity.SuitStandard">
+  	insert into standard_suite(
+  		standard_id,
+  		suite_id,
+  		createtime
+  	)
+  	values(
+  		#{standard_id},
+  		#{suite_id},
+  		#{createtime}
+  	)
+  
+  </insert>
+  <!-- suit -->
+  <select id="getSuitList"  parameterType="org.edataserver.entity.GetSuitList" resultType="map">
+	select 
+  		a.id as suitId,
+  		a.suit_name as suitName,
+  		a.skill_type as skillType,
+  		b.standard_name as standardName,
+  		b.standard_number as standardNumber,
+  		b.updatetime as uploadDate
+  	from suite a 
+  		inner join standard_suite c on a.id=c.suite_id 
+  		inner join teststandard b on c.standard_id=b.standard_id
+  	where 1=1
+  	<if test="testType !=null and testType !=''">   
+		and a.test_type = #{testType}
+	</if>
+	<if test="skillType !=null and skillType !=''">   
+		and a.skill_type = #{skillType}
+	</if>
+	<if test="uploadStartDate !=null and uploadStartDate !=''">   
+		and a.createtime &gt; #{uploadStartDate}
+	</if>
+	<if test="uploadEndDate !=null and uploadEndDate !=''">   
+		and a.createtime &lt; #{uploadStartDate}
+	</if>
+	<if test="keyWord !=null and keyWord !=''">   
+		and a.suit_name = '%${keyWord}%'
+	</if>
+  </select>
+  <select id="getDetail" resultType="map">
+  	select suit_name as suitName,test_type as testType,skill_type as skillType 
+  	from suite 
+  	where id=#{sutiId}
+  </select>
+  <select id="getSuitById" resultType="map">
+  	select id as suitId,suit_name as suitName,test_type as testType,skill_type as skillType 
+  	from suite 
+  	where id=#{sutiId}
+  </select>
+  
+
+  
+  
+  
+</mapper>
